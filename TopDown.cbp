@@ -36,6 +36,7 @@
 		<Unit filename="src/GLUtil.cpp" />
 		<Unit filename="src/Vec2f.cpp" />
 		<Unit filename="src/Window.cpp" />
+		<Unit filename="src/main.cpp" />
 		<Extensions>
 			<code_completion />
 			<envvars />

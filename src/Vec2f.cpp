@@ -1,7 +1,8 @@
 #include <math.h>
 #include "Vec2f.h"
 
-//Possibly unnecessary code, 2D Vector can be defined as a 3D vector with no k-plane component. Does not really matter whether we delete or not, could just make things less cluttered.
+//Possibly unnecessary code, 2D Vector can be defined as a 3D vector with no k-plane component.
+//Does not really matter whether we delete or not, could just make things less cluttered.
 
 Vec2f::Vec2f() : x(0.0f), y(0.0f) { }
 

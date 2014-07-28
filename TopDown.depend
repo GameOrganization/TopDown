@@ -1,0 +1,15 @@
+# depslib dependency file v1.0
+1406559118 source:c:\users\mike\documents\github\topdown\src\glutil.cpp
+	"GLUtil.h"
+	"GL/glew.h"
+
+1406560968 c:\users\mike\documents\github\topdown\include\glutil.h
+
+1406559118 c:\users\mike\documents\github\topdown\include\gl\glew.h
+	<stddef.h>
+	<inttypes.h>
+	<stdint.h>
+	<inttypes.h>
+	<OpenGL/glu.h>
+	<GL/glu.h>
+
