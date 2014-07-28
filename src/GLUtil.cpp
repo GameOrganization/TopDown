@@ -16,7 +16,7 @@ void GLUtil::initGL(float w, float h) {
 
 }
 
-GLuint loadShaderProgram(const char* vertFile, const char* fragFile){
+GLuint GLUtil::loadShaderProgram(const char* vertFile, const char* fragFile){
 
     //ID's for the two shaders
     GLuint VertexShader = glCreateShader(GL_VERTEX_SHADER);

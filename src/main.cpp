@@ -13,7 +13,7 @@ float w = 0.0f, h = 0.0f;
 
 GLuint vertexBuffer;
 
-GLuint programID = GLUtil::loadShaderProgram("vertexShader.txt", "fragmentShader.txt");
+GLuint programID;
 
 void update(float time) {}
 
@@ -80,6 +80,8 @@ void init() {
     glBufferData(GL_ARRAY_BUFFER, sizeof(triangle), triangle, GL_STATIC_DRAW);
 
     glClearColor(0.0f, 0.0f, 0.5f, 0.0f);
+
+    programID = GLUtil::loadShaderProgram("vertexShader.txt", "fragmentShader.txt");
 }
 
 void draw(){
