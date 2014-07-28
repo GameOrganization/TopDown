@@ -1,9 +1,14 @@
 # depslib dependency file v1.0
-1406559118 source:c:\users\mike\documents\github\topdown\src\glutil.cpp
+1406568889 source:c:\users\mike\documents\github\topdown\src\glutil.cpp
 	"GLUtil.h"
-	"GL/glew.h"
+	<string>
+	<vector>
+	<fstream>
+	<iostream>
 
-1406560968 c:\users\mike\documents\github\topdown\include\glutil.h
+1406570026 c:\users\mike\documents\github\topdown\include\glutil.h
+	<GL/glew.h>
+	<GL/wglew.h>
 
 1406559118 c:\users\mike\documents\github\topdown\include\gl\glew.h
 	<stddef.h>
@@ -13,10 +18,11 @@
 	<OpenGL/glu.h>
 	<GL/glu.h>
 
-1406561450 source:c:\users\mike\documents\github\topdown\src\main.cpp
+1406569844 source:c:\users\mike\documents\github\topdown\src\main.cpp
 	<iostream>
 	<stdlib.h>
 	"Window.h"
+	"GLUtil.cpp"
 
 1406559118 c:\users\mike\documents\github\topdown\include\window.h
 	"GL/glew.h"
@@ -43,5 +49,15 @@
 
 1406559118 source:c:\users\mike\documents\github\topdown\src\window.cpp
 	"Window.h"
+	<iostream>
+
+1406559118 c:\users\mike\documents\github\topdown\include\gl\wglew.h
+	<windows.h>
+
+1406568889 c:\users\mike\documents\github\topdown\src\glutil.cpp
+	"GLUtil.h"
+	<string>
+	<vector>
+	<fstream>
 	<iostream>
 
