@@ -4,6 +4,24 @@
 
 #define VSYNC 1
 
+void init();
+void update(float time);
+void draw();
+
+float w = 0.0f, h = 0.0f;
+
+
+void update(float time) {}
+
+static void keyHandler(GLFWwindow* window, int key, int scancode, int action, int mods) {
+
+    //close window
+    if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
+        glfwSetWindowShouldClose(window, GL_TRUE);
+}
+
+static void mouseHandler(GLFWwindow* window, int button, int action, int mods) {}
+
 int main(int argc, char *argv[]) {
 
     //Attempt to create window
@@ -45,16 +63,3 @@ void init() {
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
 }
-
-void update(float time) {
-    world.Step(time, 8, 3);
-}
-
-static void keyHandler(GLFWwindow* window, int key, int scancode, int action, int mods) {
-
-    //close window
-    if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
-        glfwSetWindowShouldClose(window, GL_TRUE);
-}
-
-static void mouseHandler(GLFWwindow* window, int button, int action, int mods) {}
