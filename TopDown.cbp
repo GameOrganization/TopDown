@@ -13,15 +13,29 @@
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-O2" />
+					<Add option="-DGLEW_STATIC" />
+					<Add directory="include" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
+					<Add library="glfw3" />
+					<Add library="glew32s" />
+					<Add library="glew32" />
+					<Add library="opengl32" />
+					<Add library="gdi32" />
+					<Add directory="lib" />
 				</Linker>
 			</Target>
 		</Build>
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
+		<Unit filename="include/GLUtil.h" />
+		<Unit filename="include/Vec2f.h" />
+		<Unit filename="include/Window.h" />
+		<Unit filename="src/GLUtil.cpp" />
+		<Unit filename="src/Vec2f.cpp" />
+		<Unit filename="src/Window.cpp" />
 		<Extensions>
 			<code_completion />
 			<envvars />
