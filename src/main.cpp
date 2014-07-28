@@ -1,5 +1,6 @@
 #include <iostream>
 #include <stdlib.h>
+#define GLFW_INCLUDE_GLU
 #include "Window.h"
 #include "GLUtil.h"
 
@@ -15,7 +16,12 @@ GLuint vertexBuffer;
 
 GLuint programID;
 
-void update(float time) {}
+void update(float time) {
+    int err;
+    if (err = glGetError()) {
+        std::cout << "ERROR: " << gluErrorString(err) << std::endl;
+    }
+}
 
 static void keyHandler(GLFWwindow* window, int key, int scancode, int action, int mods) {
 
@@ -57,16 +63,6 @@ void init() {
     //Enable vsync so mike's computer doesn't shit itself
     //just noticed this and laughed in the office i dont care i love it
     glfwSwapInterval(VSYNC);
-
-    w = 10.0f * (float)Window::width() / (float)Window::height();
-    h = 10.0f;
-
-    //glViewport(0.0f, 0.0f, Window::width(), Window::height());
-    glMatrixMode(GL_PROJECTION);
-    //glLoadIdentity();
-    glOrtho(-w/2, w/2, 0.0f, h, -1.0f, 1.0f);
-    glMatrixMode(GL_MODELVIEW);
-    glLoadIdentity();
 
     static const GLfloat triangle[] = {
     -1.0f, -1.0f, 0.0f,
