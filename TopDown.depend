@@ -61,12 +61,13 @@
 	<fstream>
 	<iostream>
 
-1406570327 source:d:\github\topdown\src\glutil.cpp
+1406571021 source:d:\github\topdown\src\glutil.cpp
 	"GLUtil.h"
 	<string>
 	<vector>
 	<fstream>
 	<iostream>
+	<cstdlib>
 
 1406570327 d:\github\topdown\include\glutil.h
 	<GL/glew.h>
@@ -83,7 +84,7 @@
 1374502400 d:\github\topdown\include\gl\wglew.h
 	<windows.h>
 
-1406570327 source:d:\github\topdown\src\main.cpp
+1406570486 source:d:\github\topdown\src\main.cpp
 	<iostream>
 	<stdlib.h>
 	"Window.h"

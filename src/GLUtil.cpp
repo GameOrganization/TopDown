@@ -4,6 +4,7 @@
 #include <vector>
 #include <fstream>
 #include <iostream>
+#include <cstdlib>
 
 GLuint vertexArray = 0;
 
@@ -58,9 +59,10 @@ GLuint GLUtil::loadShaderProgram(const char* vertFile, const char* fragFile){
     //generating error message for vertex shader
     glGetShaderiv(VertexShader, GL_COMPILE_STATUS, &result);
     glGetShaderiv(VertexShader, GL_INFO_LOG_LENGTH, &infoLogLength);
-    std::vector<char> VertexShaderMessage(infoLogLength);
-    glGetShaderInfoLog(VertexShader, infoLogLength, NULL, &VertexShaderMessage[0]);
-    //std::cout<<VertexShaderMessage<<std::endl;
+    char* VertexShaderMessage = (char*)malloc(infoLogLength);
+    glGetShaderInfoLog(VertexShader, infoLogLength, NULL, VertexShaderMessage);
+    std::cout<<VertexShaderMessage<<std::endl;
+    free(VertexShaderMessage);
 
     //compiling the fragment shader
     std::cout<<"Compiling fragment shader at: "<<fragFile<<std::endl;
@@ -71,9 +73,9 @@ GLuint GLUtil::loadShaderProgram(const char* vertFile, const char* fragFile){
     //generating error message for fragment shader
     glGetShaderiv(FragmentShader, GL_COMPILE_STATUS, &result);
     glGetShaderiv(FragmentShader, GL_INFO_LOG_LENGTH, &infoLogLength);
-    std::vector<char> FragmentShaderMessage(infoLogLength);
-    glGetShaderInfoLog(FragmentShader, infoLogLength, NULL, &FragmentShaderMessage[0]);
-    //std::cout<<FragmentShaderMessage<<std::endl;
+    char* FragmentShaderMessage = (char*)malloc(infoLogLength);
+    glGetShaderInfoLog(FragmentShader, infoLogLength, NULL, FragmentShaderMessage);
+    std::cout<<FragmentShaderMessage<<std::endl;
 
     //link the two shaders with the program
     std::cout<<"Linking"<<std::endl;
@@ -85,9 +87,10 @@ GLuint GLUtil::loadShaderProgram(const char* vertFile, const char* fragFile){
     //generating error message for the program
     glGetShaderiv(ProgramID, GL_COMPILE_STATUS, &result);
     glGetShaderiv(ProgramID, GL_INFO_LOG_LENGTH, &infoLogLength);
-    std::vector<char> ProgramMessage(infoLogLength);
-    glGetShaderInfoLog(ProgramID, infoLogLength, NULL, &ProgramMessage[0]);
-    //cout<<ProgramMessage<<std::endl;
+    char* ProgramMessage = (char*)malloc(infoLogLength);
+    glGetProgramInfoLog(ProgramID, infoLogLength, NULL, ProgramMessage);
+    std::cout<<ProgramMessage<<std::endl;
+    free(ProgramMessage);
 
     //delete the shaders
     glDeleteShader(VertexShader);
