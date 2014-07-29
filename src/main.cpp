@@ -138,7 +138,7 @@ void init() {
     glUseProgram(programID);
     update(0.0f);
 
-    glm::mat4 projection = glm::perspective(fov, (float)w/h, 0.1f, 100.0f);
+    glm::mat4 projection = glm::ortho(-w/2, w/2, -h/2, h/2, 5.0f, -5.0f);
 
     glm::mat4 view = glm::lookAt(
         glm::vec3(4.0f, 3.0f, 3.0f),   //camera position
