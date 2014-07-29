@@ -65,7 +65,7 @@
 	<fstream>
 	<iostream>
 
-1406571021 source:d:\github\topdown\src\glutil.cpp
+1406647226 source:d:\github\topdown\src\glutil.cpp
 	"GLUtil.h"
 	<string>
 	<vector>
@@ -88,12 +88,13 @@
 1374502400 d:\github\topdown\include\gl\wglew.h
 	<windows.h>
 
-1406642623 source:d:\github\topdown\src\main.cpp
+1406647541 source:d:\github\topdown\src\main.cpp
 	<iostream>
 	<stdlib.h>
 	<glm/glm.hpp>
 	<glm/gtc/matrix_transform.hpp>
 	<glm/gtx/transform.hpp>
+	<glm/gtc/type_ptr.hpp>
 	"Window.h"
 	"GLUtil.h"
 
@@ -120,7 +121,7 @@
 1402538893 d:\github\topdown\include\vec2f.h
 	<iostream>
 
-1406571682 source:d:\github\topdown\src\window.cpp
+1406647736 source:d:\github\topdown\src\window.cpp
 	"Window.h"
 	<iostream>
 
@@ -911,4 +912,38 @@
 	"transform.inl"
 
 1389483479 d:\github\topdown\include\glm\gtx\transform.inl
+
+1389483479 d:\github\topdown\include\glm\gtc\type_ptr.hpp
+	"../gtc/quaternion.hpp"
+	"../vec2.hpp"
+	"../vec3.hpp"
+	"../vec4.hpp"
+	"../mat2x2.hpp"
+	"../mat2x3.hpp"
+	"../mat2x4.hpp"
+	"../mat3x2.hpp"
+	"../mat3x3.hpp"
+	"../mat3x4.hpp"
+	"../mat4x2.hpp"
+	"../mat4x3.hpp"
+	"../mat4x4.hpp"
+	<cstring>
+	"type_ptr.inl"
+
+1403301671 d:\github\topdown\include\glm\gtc\quaternion.hpp
+	"../mat3x3.hpp"
+	"../mat4x4.hpp"
+	"../vec3.hpp"
+	"../vec4.hpp"
+	"../gtc/constants.hpp"
+	"quaternion.inl"
+
+1403287823 d:\github\topdown\include\glm\gtc\quaternion.inl
+	"../trigonometric.hpp"
+	"../geometric.hpp"
+	"../exponential.hpp"
+	<limits>
+
+1389483479 d:\github\topdown\include\glm\gtc\type_ptr.inl
+	<cstring>
 

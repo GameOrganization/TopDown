@@ -6,8 +6,8 @@
 #include <iostream>
 #include <cstdlib>
 
-GLuint vertexArray = 0;
-
+//GLuint vertexArray = 0;
+/*
 void GLUtil::initGL(float w, float h) {
     //Initialize the vertex array
     glGenVertexArrays(1, &vertexArray);
@@ -16,7 +16,7 @@ void GLUtil::initGL(float w, float h) {
 
 
 }
-
+*/
 GLuint GLUtil::loadShaderProgram(const char* vertFile, const char* fragFile){
 
     //ID's for the two shaders

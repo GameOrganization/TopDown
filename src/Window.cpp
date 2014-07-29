@@ -23,6 +23,13 @@ static void error(int error, const char* description) {
     std::cerr << "Error " << error << ": " << description << std::endl;
 }
 
+void checkError(const char *name) {
+    int err;
+    if (err = glGetError()) {
+        std::cout << name << " - ERROR: " << gluErrorString(err) << std::endl;
+    }
+}
+
 int Window::create() {
     //Set the error callback for GLFW
     glfwSetErrorCallback(error);
@@ -40,7 +47,7 @@ int Window::create() {
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3); //OpenGL 3.3
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
     glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE); //Needed on MacOS for some reason
-    glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_COMPAT_PROFILE); //Use core profile (idk what that means)
+    glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE); //Use core profile (idk what that means)
 
     //Attempt to create the fullscreen window with native resolution
     GLFWmonitor* monitor = glfwGetPrimaryMonitor();
@@ -50,18 +57,19 @@ int Window::create() {
     //If window is still null, return 1
     if (!ptr)
         return 1;
-
     //Update the resolution struct
     resolution.w = display->width;
     resolution.h = display->height;
 
     //Make the window the current OpenGL context
     glfwMakeContextCurrent(ptr);
+    checkError("context");
 
     //Attempt to initialize GLEW, if an error occurred, return null
     glewExperimental = true; //needed for core profile
     if (glewInit() != GLEW_OK)
         return 1;
+    checkError("glew");
 
     //Initialize the fps counter
     fps.curr = glfwGetTime();
