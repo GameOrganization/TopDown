@@ -1,5 +1,6 @@
 #include <iostream>
 #include <stdlib.h>
+#define GLM_FORCE_RADIANS
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtx/transform.hpp>
@@ -19,6 +20,46 @@ float w = 0.0f, h = 0.0f, fov = 45.0f;
 GLuint vertexArray, vertexBuffer;
 
 GLuint programID;
+
+//a cube, centered at the origin, sides of length 2, represented by 12 triangles
+static const GLfloat cube[] = {
+    -1.0f,-1.0f,-1.0f,
+    -1.0f,-1.0f, 1.0f,
+    -1.0f, 1.0f, 1.0f,
+     1.0f, 1.0f,-1.0f,
+    -1.0f,-1.0f,-1.0f,
+    -1.0f, 1.0f,-1.0f,
+     1.0f,-1.0f, 1.0f,
+    -1.0f,-1.0f,-1.0f,
+     1.0f,-1.0f,-1.0f,
+     1.0f, 1.0f,-1.0f,
+     1.0f,-1.0f,-1.0f,
+    -1.0f,-1.0f,-1.0f,
+    -1.0f,-1.0f,-1.0f,
+    -1.0f, 1.0f, 1.0f,
+    -1.0f, 1.0f,-1.0f,
+     1.0f,-1.0f, 1.0f,
+    -1.0f,-1.0f, 1.0f,
+    -1.0f,-1.0f,-1.0f,
+    -1.0f, 1.0f, 1.0f,
+    -1.0f,-1.0f, 1.0f,
+     1.0f,-1.0f, 1.0f,
+     1.0f, 1.0f, 1.0f,
+     1.0f,-1.0f,-1.0f,
+     1.0f, 1.0f,-1.0f,
+     1.0f,-1.0f,-1.0f,
+     1.0f, 1.0f, 1.0f,
+     1.0f,-1.0f, 1.0f,
+     1.0f, 1.0f, 1.0f,
+     1.0f, 1.0f,-1.0f,
+    -1.0f, 1.0f,-1.0f,
+     1.0f, 1.0f, 1.0f,
+    -1.0f, 1.0f,-1.0f,
+    -1.0f, 1.0f, 1.0f,
+    1.0f, 1.0f, 1.0f,
+    -1.0f, 1.0f, 1.0f,
+     1.0f,-1.0f, 1.0f
+};
 
 void update(float time) {
     int err;
@@ -71,12 +112,6 @@ void init() {
     w = Window::width();
     h = Window::height();
 
-    static const GLfloat triangle[] = {
-    -1.0f, -1.0f, 0.0f,
-    1.0f, -1.0f, 0.0f,
-    0.0f,  1.0f, 0.0f,
-    };
-
     update(0.0f);
 
     std::cout << "vertex array" << std::endl;
@@ -88,7 +123,7 @@ void init() {
     std::cout << "bindbuffer" << std::endl;
     glGenBuffers(1, &vertexBuffer);
     glBindBuffer(GL_ARRAY_BUFFER, vertexBuffer);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(triangle), triangle, GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(cube), cube, GL_STATIC_DRAW);
     update(0.0f);
 
     //setting the 'clear' color (color of the background after clearing it)
@@ -110,7 +145,7 @@ void init() {
         glm::vec3(0.0f, 0.0f, 0.0f),   //camera target
         glm::vec3(0.0f, 1.0f, 0.0f));  //vector pointing up
 
-    //identity matrix (since the triangle is at the origin
+    //identity matrix (since the cube is at the origin
     glm::mat4 model = glm::mat4(1.0f);
 
     glm::mat4 mvp = projection * view * model;
@@ -129,12 +164,11 @@ void draw(){
     //clear the window
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-    //telling gl to use our shaders
-
     //loading the vertices
     glEnableVertexAttribArray(0);
     glBindBuffer(GL_ARRAY_BUFFER, vertexBuffer);
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, (void*)0);
-    glDrawArrays(GL_TRIANGLES, 0, 3);
+    //6 faces, 2 triangles per face, 3 vertices per triangle
+    glDrawArrays(GL_TRIANGLES, 0, sizeof(cube));
     glDisableVertexAttribArray(0);
 }
