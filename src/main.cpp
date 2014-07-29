@@ -1,5 +1,8 @@
 #include <iostream>
 #include <stdlib.h>
+#include <glm/glm/glm.hpp>
+#include <glm/glm/gtc/matrix_transform.hpp>
+#include <glm/glm/gtx/transform.hpp>
 #define GLFW_INCLUDE_GLU
 #include "Window.h"
 #include "GLUtil.h"
@@ -10,7 +13,7 @@ void init();
 void update(float time);
 void draw();
 
-float w = 0.0f, h = 0.0f;
+float w = 0.0f, h = 0.0f, fov = 45.0f;
 
 GLuint vertexBuffer;
 
@@ -70,21 +73,43 @@ void init() {
     0.0f,  1.0f, 0.0f,
     };
 
+    //generating and binding the vertex buffer
     glGenBuffers(1, &vertexBuffer);
     glBindBuffer(GL_ARRAY_BUFFER, vertexBuffer);
-
     glBufferData(GL_ARRAY_BUFFER, sizeof(triangle), triangle, GL_STATIC_DRAW);
 
+    //setting the 'clear' color (color of the background after clearing it)
     glClearColor(0.0f, 0.0f, 0.5f, 0.0f);
 
+    //loading the vertex and fragment shaders
     programID = GLUtil::loadShaderProgram("vertexShader.txt", "fragmentShader.txt");
+
+    glm::mat4 projection = glm::perspective(fov, (float)w/h, 1.0f, 100.0f);
+
+    glm::mat4 view = glm::lookAt(
+        glm::vec3(4.0f, 3.0f, 3.0f),   //camera position
+        glm::vec3(0.0f, 0.0f, 0.0f),   //camera target
+        glm::vec3(0.0f,-1.0f, 0.0f));  //vector pointing up
+
+    //identity matrix (since the triangle is at the origin
+    glm::mat4 model = glm::mat4(1.0f);
+
+    glm::mat4 cumulativeTransformMatrix = projection * view * model;
+
+    GLuint matrixID = glGetUniformLocation(programID, "cumulativeTransformMatrix");
+
+    glUniformMatrix4fv(matrixID, 1, GL_FALSE, &cumulativeTransformMatrix[0][0]);
 }
 
 void draw(){
+
+    //clear the window
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
+    //telling gl to use our shaders
     glUseProgram(programID);
 
+    //loading the vertices
     glEnableVertexAttribArray(0);
     glBindBuffer(GL_ARRAY_BUFFER, vertexBuffer);
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, (void*)0);
