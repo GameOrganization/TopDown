@@ -1,8 +1,8 @@
 #include <iostream>
 #include <stdlib.h>
-#include <glm/glm/glm.hpp>
-#include <glm/glm/gtc/matrix_transform.hpp>
-#include <glm/glm/gtx/transform.hpp>
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtx/transform.hpp>
 #define GLFW_INCLUDE_GLU
 #include "Window.h"
 #include "GLUtil.h"
