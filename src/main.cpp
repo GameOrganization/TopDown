@@ -17,7 +17,7 @@ void draw();
 
 float w = 0.0f, h = 0.0f, fov = 45.0f;
 
-GLuint vertexArray, vertexBuffer;
+GLuint vertexArray, vertexBuffer, colorBuffer;
 
 GLuint programID;
 
@@ -114,15 +114,25 @@ void init() {
 
     update(0.0f);
 
+    glEnable(GL_DEPTH_TEST);
+    glDepthFunc(GL_LESS);
+
     std::cout << "vertex array" << std::endl;
     glGenVertexArrays(1, &vertexArray);
     glBindVertexArray(vertexArray);
     update(0.0f);
 
     //generating and binding the vertex buffer
-    std::cout << "bindbuffer" << std::endl;
+    std::cout << "binding vertex buffers" << std::endl;
     glGenBuffers(1, &vertexBuffer);
     glBindBuffer(GL_ARRAY_BUFFER, vertexBuffer);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(cube), cube, GL_STATIC_DRAW);
+    update(0.0f);
+
+    //generating and binding the color buffer, using the vertices positions as rgb values
+    std::cout << "binding color buffers" << std::endl;
+    glGenBuffers(1, &colorBuffer);
+    glBindBuffer(GL_ARRAY_BUFFER, colorBuffer);
     glBufferData(GL_ARRAY_BUFFER, sizeof(cube), cube, GL_STATIC_DRAW);
     update(0.0f);
 
@@ -138,7 +148,7 @@ void init() {
     glUseProgram(programID);
     update(0.0f);
 
-    glm::mat4 projection = glm::ortho(-w/2, w/2, -h/2, h/2, 5.0f, -5.0f);
+    glm::mat4 projection = glm::perspective(fov, (float)w/h, 0.1f, 100.0f);
 
     glm::mat4 view = glm::lookAt(
         glm::vec3(4.0f, 3.0f, 3.0f),   //camera position
@@ -168,6 +178,10 @@ void draw(){
     glEnableVertexAttribArray(0);
     glBindBuffer(GL_ARRAY_BUFFER, vertexBuffer);
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, (void*)0);
+    //loading the colors
+    glEnableVertexAttribArray(1);
+    glBindBuffer(GL_ARRAY_BUFFER, colorBuffer);
+    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 0, (void*)0);
     //6 faces, 2 triangles per face, 3 vertices per triangle
     glDrawArrays(GL_TRIANGLES, 0, sizeof(cube));
     glDisableVertexAttribArray(0);
