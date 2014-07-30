@@ -1,9 +1,10 @@
 #include <iostream>
 #include <stdlib.h>
-#define GLM_FORCE_RADIANS
+//#define GLM_FORCE_RADIANS
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtx/transform.hpp>
+#include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 #define GLFW_INCLUDE_GLU
 #include "Window.h"
@@ -148,15 +149,19 @@ void init() {
     glUseProgram(programID);
     update(0.0f);
 
-    glm::mat4 projection = glm::perspective(fov, (float)w/h, 0.1f, 100.0f);
+/*  glm::mat4 projection = glm::perspective(fov, (float)w/h, 0.1f, 100.0f);   */
+    glm::mat4 projection = glm::ortho(-5.0f, 5.0f, -5.0f, 5.0f, -2.0f, 2.0f);
 
-    glm::mat4 view = glm::lookAt(
+/* glm::mat4 view = glm::lookAt(
         glm::vec3(4.0f, 3.0f, 3.0f),   //camera position
         glm::vec3(0.0f, 0.0f, 0.0f),   //camera target
-        glm::vec3(0.0f, 1.0f, 0.0f));  //vector pointing up
+        glm::vec3(0.0f, 1.0f, 0.0f));  //vector pointing up */
+    glm::mat4 view = glm::mat4(1.0f);
 
     //identity matrix (since the cube is at the origin
     glm::mat4 model = glm::mat4(1.0f);
+    model = glm::rotate(model, 30.0f, glm::vec3(0.0f, 1.0f, 0.0f));
+    model = glm::rotate(model, 30.0f, glm::vec3(1.0f, 0.0f, 0.0f));
 
     glm::mat4 mvp = projection * view * model;
 
