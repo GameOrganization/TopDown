@@ -90,7 +90,7 @@
 1374502400 d:\github\topdown\include\gl\wglew.h
 	<windows.h>
 
-1406731805 source:d:\github\topdown\src\main.cpp
+1406738328 source:d:\github\topdown\src\main.cpp
 	<iostream>
 	<stdlib.h>
 	<glm/glm.hpp>
@@ -1382,4 +1382,9 @@
 	"camera.h"
 
 1406734748 c:\users\mike\documents\github\topdown\include\camera.h
+
+1406736976 source:d:\github\topdown\src\camera.cpp
+	"camera.h"
+
+1406736976 d:\github\topdown\include\camera.h
 

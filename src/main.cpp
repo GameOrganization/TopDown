@@ -25,7 +25,7 @@ glm::vec3 cameraUp = glm::vec3(0,1,0);
 
 GLuint vertexArray, vertexBuffer, colorBuffer;
 
-GLuint programID;
+GLuint programID, mvpID;
 
 //a cube, centered at the origin, sides of length 2, represented by 12 triangles
 static const GLfloat cube[] = {
@@ -75,11 +75,11 @@ void update(float time) {
     /*  glm::mat4 projection = glm::perspective(fov, (float)w/h, 0.1f, 100.0f);   */
     glm::mat4 projection = glm::ortho(-2*w/h, 2*w/h, -2.0f, 2.0f, -2.0f, 2.0f);
 
-    glm::mat4 view = glm::lookAt(
+/*  glm::mat4 view = glm::lookAt(
         cameraPos,                  //camera position
         cameraPos + cameraFront,    //camera target
-        cameraUp);                  //vector pointing up *
-    //glm::mat4 view = glm::mat4(1.0f);
+        cameraUp);                  //vector pointing up */
+    glm::mat4 view = glm::mat4(1.0f);
 
     //identity matrix (since the cube is at the origin
     glm::mat4 model = glm::mat4(1.0f);
@@ -88,15 +88,7 @@ void update(float time) {
 
     glm::mat4 mvp = projection * view * model;
 
-    std::cout << "get uniform" << std::endl;
-    GLuint matrixID = glGetUniformLocation(programID, "MVP");
-    update(0.0f);
-
-    std::cout << "set uniform" << std::endl;
-    glUniformMatrix4fv(matrixID, 1, GL_FALSE, glm::value_ptr(mvp));
-    update(0.0f);
-
-
+    glUniformMatrix4fv(mvpID, 1, GL_FALSE, glm::value_ptr(mvp));
 }
 
 static void keyHandler(GLFWwindow* window, int key, int scancode, int action, int mods) {
@@ -161,41 +153,31 @@ void init() {
     w = Window::width();
     h = Window::height();
 
-    update(0.0f);
-
     glEnable(GL_DEPTH_TEST);
     glDepthFunc(GL_LESS);
 
-    std::cout << "vertex array" << std::endl;
     glGenVertexArrays(1, &vertexArray);
     glBindVertexArray(vertexArray);
-    update(0.0f);
 
     //generating and binding the vertex buffer
-    std::cout << "binding vertex buffers" << std::endl;
     glGenBuffers(1, &vertexBuffer);
     glBindBuffer(GL_ARRAY_BUFFER, vertexBuffer);
     glBufferData(GL_ARRAY_BUFFER, sizeof(cube), cube, GL_STATIC_DRAW);
-    update(0.0f);
 
     //generating and binding the color buffer, using the vertices positions as rgb values
-    std::cout << "binding color buffers" << std::endl;
     glGenBuffers(1, &colorBuffer);
     glBindBuffer(GL_ARRAY_BUFFER, colorBuffer);
     glBufferData(GL_ARRAY_BUFFER, sizeof(cube), cube, GL_STATIC_DRAW);
-    update(0.0f);
 
     //setting the 'clear' color (color of the background after clearing it)
-    std::cout << "clearcolor" << std::endl;
     glClearColor(0.0f, 0.0f, 0.5f, 0.0f);
-    update(0.0f);
 
     //loading the vertex and fragment shaders
-    std::cout << "load shaders" << std::endl;
     programID = GLUtil::loadShaderProgram("vertexShader.txt", "fragmentShader.txt");
     std::cout << programID << std::endl;
     glUseProgram(programID);
-    update(0.0f);
+    mvpID = glGetUniformLocation(programID, "MVP");
+
 }
 
 void draw(){
