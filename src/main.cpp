@@ -1,6 +1,6 @@
 #include <iostream>
 #include <stdlib.h>
-//#define GLM_FORCE_RADIANS
+#define GLM_FORCE_RADIANS //suppresses errors about method deprecation, purely cosmetic
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtx/transform.hpp>
@@ -16,7 +16,12 @@ void init();
 void update(float time);
 void draw();
 
-float w = 0.0f, h = 0.0f, fov = 45.0f;
+float w = 0.0f, h = 0.0f, fov = 45.0f, speed = 3.0f;
+
+glm::vec3 cameraPos = glm::vec3(0,0,5);
+glm::vec3 cameraFront = glm::vec3(0,0,1);
+glm::vec3 cameraRight = glm::vec3(1,0,0);
+glm::vec3 cameraUp = glm::vec3(0,1,0);
 
 GLuint vertexArray, vertexBuffer, colorBuffer;
 
@@ -57,7 +62,7 @@ static const GLfloat cube[] = {
      1.0f, 1.0f, 1.0f,
     -1.0f, 1.0f,-1.0f,
     -1.0f, 1.0f, 1.0f,
-    1.0f, 1.0f, 1.0f,
+     1.0f, 1.0f, 1.0f,
     -1.0f, 1.0f, 1.0f,
      1.0f,-1.0f, 1.0f
 };
@@ -67,13 +72,56 @@ void update(float time) {
     if (err = glGetError()) {
         std::cout << "ERROR: " << gluErrorString(err) << std::endl;
     }
+    /*  glm::mat4 projection = glm::perspective(fov, (float)w/h, 0.1f, 100.0f);   */
+    glm::mat4 projection = glm::ortho(-2*w/h, 2*w/h, -2.0f, 2.0f, -2.0f, 2.0f);
+
+    glm::mat4 view = glm::lookAt(
+        cameraPos,                  //camera position
+        cameraPos + cameraFront,    //camera target
+        cameraUp);                  //vector pointing up *
+    //glm::mat4 view = glm::mat4(1.0f);
+
+    //identity matrix (since the cube is at the origin
+    glm::mat4 model = glm::mat4(1.0f);
+    //model = glm::rotate(model, 30.0f, glm::vec3(0.0f, 1.0f, 0.0f));
+    //model = glm::rotate(model, 30.0f, glm::vec3(1.0f, 0.0f, 0.0f));
+
+    glm::mat4 mvp = projection * view * model;
+
+    std::cout << "get uniform" << std::endl;
+    GLuint matrixID = glGetUniformLocation(programID, "MVP");
+    update(0.0f);
+
+    std::cout << "set uniform" << std::endl;
+    glUniformMatrix4fv(matrixID, 1, GL_FALSE, glm::value_ptr(mvp));
+    update(0.0f);
+
+
 }
 
 static void keyHandler(GLFWwindow* window, int key, int scancode, int action, int mods) {
 
     //close window
-    if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
+    if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS){
+        std::cout<<"CLOSING"<<std::endl;
         glfwSetWindowShouldClose(window, GL_TRUE);
+    }
+    if (key == GLFW_KEY_W && action == GLFW_PRESS){
+        std::cout<<"W PRESSED"<<std::endl;
+        cameraPos += cameraFront * (float)Window::getFrameTime() * speed;
+    }
+    if (key == GLFW_KEY_S && action == GLFW_PRESS){
+        std::cout<<"S PRESSED"<<std::endl;
+        cameraPos -= cameraFront * (float)Window::getFrameTime() * speed;
+    }
+    if (key == GLFW_KEY_D && action == GLFW_PRESS){
+        std::cout<<"D PRESSED"<<std::endl;
+        cameraPos += cameraRight * (float)Window::getFrameTime() * speed;
+    }
+    if (key == GLFW_KEY_A && action == GLFW_PRESS){
+        std::cout<<"A PRESSED"<<std::endl;
+        cameraPos += cameraRight * (float)Window::getFrameTime() * speed;
+    }
 }
 
 static void mouseHandler(GLFWwindow* window, int button, int action, int mods) {}
@@ -147,30 +195,6 @@ void init() {
     programID = GLUtil::loadShaderProgram("vertexShader.txt", "fragmentShader.txt");
     std::cout << programID << std::endl;
     glUseProgram(programID);
-    update(0.0f);
-
-/*  glm::mat4 projection = glm::perspective(fov, (float)w/h, 0.1f, 100.0f);   */
-    glm::mat4 projection = glm::ortho(-5.0f, 5.0f, -5.0f, 5.0f, -2.0f, 2.0f);
-
-/* glm::mat4 view = glm::lookAt(
-        glm::vec3(4.0f, 3.0f, 3.0f),   //camera position
-        glm::vec3(0.0f, 0.0f, 0.0f),   //camera target
-        glm::vec3(0.0f, 1.0f, 0.0f));  //vector pointing up */
-    glm::mat4 view = glm::mat4(1.0f);
-
-    //identity matrix (since the cube is at the origin
-    glm::mat4 model = glm::mat4(1.0f);
-    model = glm::rotate(model, 30.0f, glm::vec3(0.0f, 1.0f, 0.0f));
-    model = glm::rotate(model, 30.0f, glm::vec3(1.0f, 0.0f, 0.0f));
-
-    glm::mat4 mvp = projection * view * model;
-
-    std::cout << "get uniform" << std::endl;
-    GLuint matrixID = glGetUniformLocation(programID, "MVP");
-    update(0.0f);
-
-    std::cout << "set uniform" << std::endl;
-    glUniformMatrix4fv(matrixID, 1, GL_FALSE, glm::value_ptr(mvp));
     update(0.0f);
 }
 

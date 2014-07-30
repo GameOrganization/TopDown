@@ -19,17 +19,18 @@
 	<OpenGL/glu.h>
 	<GL/glu.h>
 
-1406723691 source:c:\users\mike\documents\github\topdown\src\main.cpp
+1406732036 source:c:\users\mike\documents\github\topdown\src\main.cpp
 	<iostream>
 	<stdlib.h>
 	<glm/glm.hpp>
 	<glm/gtc/matrix_transform.hpp>
 	<glm/gtx/transform.hpp>
+	<glm/gtc/matrix_transform.hpp>
 	<glm/gtc/type_ptr.hpp>
 	"Window.h"
 	"GLUtil.h"
 
-1406559118 c:\users\mike\documents\github\topdown\include\window.h
+1406733222 c:\users\mike\documents\github\topdown\include\window.h
 	"GL/glew.h"
 	"GLFW/glfw3.h"
 
@@ -1376,4 +1377,9 @@
 
 1406643071 c:\users\mike\documents\github\topdown\include\glm\gtc\type_ptr.inl
 	<cstring>
+
+1406734838 source:c:\users\mike\documents\github\topdown\src\camera.cpp
+	"camera.h"
+
+1406734748 c:\users\mike\documents\github\topdown\include\camera.h
 
