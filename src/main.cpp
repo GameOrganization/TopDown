@@ -93,20 +93,20 @@ static void keyHandler(GLFWwindow* window, int key, int scancode, int action, in
         glfwSetWindowShouldClose(window, GL_TRUE);
     }
     //move up
-    if (key == GLFW_KEY_W && action == GLFW_PRESS){
-        view = glm::translate(view, glm::vec3(0.f,-0.5f,0.f));
+    if (key == GLFW_KEY_W && (action == GLFW_REPEAT || action == GLFW_PRESS)){
+        view = glm::translate(view, glm::vec3(0.f,-0.05f,0.f));
     }
     //move down
-    if (key == GLFW_KEY_S && action == GLFW_PRESS){
-        view = glm::translate(view, glm::vec3(0.f,0.5f,0.f));
+    if (key == GLFW_KEY_S && (action == GLFW_REPEAT || action == GLFW_PRESS)){
+        view = glm::translate(view, glm::vec3(0.f,0.05f,0.f));
     }
     //move right
-    if (key == GLFW_KEY_D && action == GLFW_PRESS){
-        view = glm::translate(view, glm::vec3(-0.5f,0.f,0.f));
+    if (key == GLFW_KEY_D && (action == GLFW_REPEAT || action == GLFW_PRESS)){
+        view = glm::translate(view, glm::vec3(-0.05f,0.f,0.f));
     }
     //move left
-    if (key == GLFW_KEY_A && action == GLFW_PRESS){
-        view = glm::translate(view, glm::vec3(0.5f,0.f,0.f));
+    if (key == GLFW_KEY_A && (action == GLFW_REPEAT || action == GLFW_PRESS)){
+        view = glm::translate(view, glm::vec3(0.05f,0.f,0.f));
     }
 }
 
