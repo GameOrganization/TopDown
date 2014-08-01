@@ -92,7 +92,7 @@ void update(float time) {
 
     if (motion.lengthSquared() > 0) {
         motion.normalize();
-        camera += motion * time;
+        camera += motion * -time;
     }
 
     glm::mat4 view = glm::translate(glm::mat4(1.0f), glm::vec3(camera.x, camera.y, 0.0f));
