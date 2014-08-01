@@ -9,6 +9,7 @@
 #define GLFW_INCLUDE_GLU
 #include "Window.h"
 #include "GLUtil.h"
+#include <Vec2f.h>
 
 #define VSYNC 1
 
@@ -18,9 +19,9 @@ void draw();
 
 float w = 0.0f, h = 0.0f, fov = 45.0f, speed = 3.0f;
 
-glm::mat4 view = glm::mat4(1.0f);
-
 GLuint vertexArray, vertexBuffer, colorBuffer;
+
+Vec2f camera;
 
 GLuint programID, mvpID;
 
@@ -75,10 +76,31 @@ void update(float time) {
 
     glm::mat4 projection = glm::ortho(-2*w/h, 2*w/h, -2.0f, 2.0f, -2.0f, 2.0f);
 
-    //identity matrix (since the cube is at the origin
-    glm::mat4 model = glm::mat4(1.0f);
+    Vec2f motion(0.0f, 0.0f);
+    if (glfwGetKey(Window::ptr, GLFW_KEY_W) == GLFW_PRESS) {
+        motion.y -= 1.0f;
+    }
+    if (glfwGetKey(Window::ptr, GLFW_KEY_A) == GLFW_PRESS) {
+        motion.x += 1.0f;
+    }
+    if (glfwGetKey(Window::ptr, GLFW_KEY_S) == GLFW_PRESS) {
+        motion.y += 1.0f;
+    }
+    if (glfwGetKey(Window::ptr, GLFW_KEY_D) == GLFW_PRESS) {
+        motion.x -= 1.0f;
+    }
+
+    if (motion.lengthSquared() > 0) {
+        motion.normalize();
+        camera += motion * time;
+    }
+
+    glm::mat4 view = glm::translate(glm::mat4(1.0f), glm::vec3(camera.x, camera.y, 0.0f));
+
     //model = glm::rotate(model, 30.0f, glm::vec3(0.0f, 1.0f, 0.0f));
     //model = glm::rotate(model, 30.0f, glm::vec3(1.0f, 0.0f, 0.0f));
+
+    glm::mat4 model = glm::mat4(1.0f);
 
     glm::mat4 mvp = projection * view * model;
 
@@ -92,7 +114,7 @@ static void keyHandler(GLFWwindow* window, int key, int scancode, int action, in
         std::cout<<"CLOSING"<<std::endl;
         glfwSetWindowShouldClose(window, GL_TRUE);
     }
-    //move up
+/*  //move up
     if (key == GLFW_KEY_W && (action == GLFW_REPEAT || action == GLFW_PRESS)){
         view = glm::translate(view, glm::vec3(0.f,-0.05f,0.f));
     }
@@ -107,7 +129,7 @@ static void keyHandler(GLFWwindow* window, int key, int scancode, int action, in
     //move left
     if (key == GLFW_KEY_A && (action == GLFW_REPEAT || action == GLFW_PRESS)){
         view = glm::translate(view, glm::vec3(0.05f,0.f,0.f));
-    }
+    }   */
 }
 
 static void mouseHandler(GLFWwindow* window, int button, int action, int mods) {}
