@@ -19,7 +19,7 @@
 	<OpenGL/glu.h>
 	<GL/glu.h>
 
-1406913000 source:c:\users\mike\documents\github\topdown\src\main.cpp
+1406917681 source:c:\users\mike\documents\github\topdown\src\main.cpp
 	<iostream>
 	<stdlib.h>
 	<glm/glm.hpp>
@@ -29,8 +29,9 @@
 	<glm/gtc/type_ptr.hpp>
 	"Window.h"
 	"GLUtil.h"
+	<Vec2f.h>
 
-1406908839 c:\users\mike\documents\github\topdown\include\window.h
+1406918028 c:\users\mike\documents\github\topdown\include\window.h
 	"GL/glew.h"
 	"GLFW/glfw3.h"
 
@@ -53,7 +54,7 @@
 1406559118 c:\users\mike\documents\github\topdown\include\vec2f.h
 	<iostream>
 
-1406908893 source:c:\users\mike\documents\github\topdown\src\window.cpp
+1406918034 source:c:\users\mike\documents\github\topdown\src\window.cpp
 	"Window.h"
 	<iostream>
 

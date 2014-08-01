@@ -25,44 +25,14 @@ Vec2f camera;
 
 GLuint programID, mvpID;
 
-//a cube, centered at the origin, sides of length 2, represented by 12 triangles
-static const GLfloat cube[] = {
-    -1.0f,-1.0f,-1.0f,
-    -1.0f,-1.0f, 1.0f,
-    -1.0f, 1.0f, 1.0f,
-     1.0f, 1.0f,-1.0f,
-    -1.0f,-1.0f,-1.0f,
-    -1.0f, 1.0f,-1.0f,
-     1.0f,-1.0f, 1.0f,
-    -1.0f,-1.0f,-1.0f,
-     1.0f,-1.0f,-1.0f,
-     1.0f, 1.0f,-1.0f,
-     1.0f,-1.0f,-1.0f,
-    -1.0f,-1.0f,-1.0f,
-    -1.0f,-1.0f,-1.0f,
-    -1.0f, 1.0f, 1.0f,
-    -1.0f, 1.0f,-1.0f,
-     1.0f,-1.0f, 1.0f,
-    -1.0f,-1.0f, 1.0f,
-    -1.0f,-1.0f,-1.0f,
-    -1.0f, 1.0f, 1.0f,
-    -1.0f,-1.0f, 1.0f,
-     1.0f,-1.0f, 1.0f,
-     1.0f, 1.0f, 1.0f,
-     1.0f,-1.0f,-1.0f,
-     1.0f, 1.0f,-1.0f,
-     1.0f,-1.0f,-1.0f,
-     1.0f, 1.0f, 1.0f,
-     1.0f,-1.0f, 1.0f,
-     1.0f, 1.0f, 1.0f,
-     1.0f, 1.0f,-1.0f,
-    -1.0f, 1.0f,-1.0f,
-     1.0f, 1.0f, 1.0f,
-    -1.0f, 1.0f,-1.0f,
-    -1.0f, 1.0f, 1.0f,
-     1.0f, 1.0f, 1.0f,
-    -1.0f, 1.0f, 1.0f,
-     1.0f,-1.0f, 1.0f
+//changed it from a cube to a plane, since that's what we'll be using most likely
+static const GLfloat plane[] = {
+     1.0f,  1.0f, 0.0f,
+    -1.0f, 1.0f, 0.0f,
+     1.0f, -1.0f, 0.0f,
+    -1.0f, -1.0f, 0.0f,
+     1.0f, -1.0f, 0.0f,
+    -1.0f,  1.0f, 0.0f,
 };
 
 void update(float time) {
@@ -72,7 +42,7 @@ void update(float time) {
     }
 
     //keep the cursor in the center of the screen
-    glfwSetCursorPos(Window::getWindow(), (double)w/2, (double)h/2);
+    glfwSetCursorPos(Window::ptr, (double)w/2, (double)h/2);
 
     glm::mat4 projection = glm::ortho(-2*w/h, 2*w/h, -2.0f, 2.0f, -2.0f, 2.0f);
 
@@ -92,7 +62,7 @@ void update(float time) {
 
     if (motion.lengthSquared() > 0) {
         motion.normalize();
-        camera += motion * -time;
+        camera += motion * time;
     }
 
     glm::mat4 view = glm::translate(glm::mat4(1.0f), glm::vec3(camera.x, camera.y, 0.0f));
@@ -114,22 +84,6 @@ static void keyHandler(GLFWwindow* window, int key, int scancode, int action, in
         std::cout<<"CLOSING"<<std::endl;
         glfwSetWindowShouldClose(window, GL_TRUE);
     }
-/*  //move up
-    if (key == GLFW_KEY_W && (action == GLFW_REPEAT || action == GLFW_PRESS)){
-        view = glm::translate(view, glm::vec3(0.f,-0.05f,0.f));
-    }
-    //move down
-    if (key == GLFW_KEY_S && (action == GLFW_REPEAT || action == GLFW_PRESS)){
-        view = glm::translate(view, glm::vec3(0.f,0.05f,0.f));
-    }
-    //move right
-    if (key == GLFW_KEY_D && (action == GLFW_REPEAT || action == GLFW_PRESS)){
-        view = glm::translate(view, glm::vec3(-0.05f,0.f,0.f));
-    }
-    //move left
-    if (key == GLFW_KEY_A && (action == GLFW_REPEAT || action == GLFW_PRESS)){
-        view = glm::translate(view, glm::vec3(0.05f,0.f,0.f));
-    }   */
 }
 
 static void mouseHandler(GLFWwindow* window, int button, int action, int mods) {}
@@ -174,7 +128,7 @@ void init() {
     glDepthFunc(GL_LESS);
 
     //hides the cursor
-    glfwSetInputMode(Window::getWindow(), GLFW_CURSOR, GLFW_CURSOR_HIDDEN);
+    glfwSetInputMode(Window::ptr, GLFW_CURSOR, GLFW_CURSOR_HIDDEN);
 
     glGenVertexArrays(1, &vertexArray);
     glBindVertexArray(vertexArray);
@@ -182,12 +136,12 @@ void init() {
     //generating and binding the vertex buffer
     glGenBuffers(1, &vertexBuffer);
     glBindBuffer(GL_ARRAY_BUFFER, vertexBuffer);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(cube), cube, GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(plane), plane, GL_STATIC_DRAW);
 
     //generating and binding the color buffer, using the vertices positions as rgb values
     glGenBuffers(1, &colorBuffer);
     glBindBuffer(GL_ARRAY_BUFFER, colorBuffer);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(cube), cube, GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(plane), plane, GL_STATIC_DRAW);
 
     //setting the 'clear' color (color of the background after clearing it)
     glClearColor(0.0f, 0.0f, 0.5f, 0.0f);
@@ -214,6 +168,6 @@ void draw(){
     glBindBuffer(GL_ARRAY_BUFFER, colorBuffer);
     glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 0, (void*)0);
     //6 faces, 2 triangles per face, 3 vertices per triangle
-    glDrawArrays(GL_TRIANGLES, 0, sizeof(cube));
+    glDrawArrays(GL_TRIANGLES, 0, sizeof(plane));
     glDisableVertexAttribArray(0);
 }
