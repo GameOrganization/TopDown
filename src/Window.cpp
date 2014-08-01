@@ -124,3 +124,7 @@ double Window::getFrameTime() {
 int Window::getFPS() {
     return fps.fps;
 }
+
+GLFWwindow* Window::getWindow(){
+    return ptr;
+}

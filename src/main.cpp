@@ -18,10 +18,7 @@ void draw();
 
 float w = 0.0f, h = 0.0f, fov = 45.0f, speed = 3.0f;
 
-glm::vec3 cameraPos = glm::vec3(0,0,5);
-glm::vec3 cameraFront = glm::vec3(0,0,1);
-glm::vec3 cameraRight = glm::vec3(1,0,0);
-glm::vec3 cameraUp = glm::vec3(0,1,0);
+glm::mat4 view = glm::mat4(1.0f);
 
 GLuint vertexArray, vertexBuffer, colorBuffer;
 
@@ -72,14 +69,11 @@ void update(float time) {
     if (err = glGetError()) {
         std::cout << "ERROR: " << gluErrorString(err) << std::endl;
     }
-    /*  glm::mat4 projection = glm::perspective(fov, (float)w/h, 0.1f, 100.0f);   */
-    glm::mat4 projection = glm::ortho(-2*w/h, 2*w/h, -2.0f, 2.0f, -2.0f, 2.0f);
 
-/*  glm::mat4 view = glm::lookAt(
-        cameraPos,                  //camera position
-        cameraPos + cameraFront,    //camera target
-        cameraUp);                  //vector pointing up */
-    glm::mat4 view = glm::mat4(1.0f);
+    //keep the cursor in the center of the screen
+    glfwSetCursorPos(Window::getWindow(), (double)w/2, (double)h/2);
+
+    glm::mat4 projection = glm::ortho(-2*w/h, 2*w/h, -2.0f, 2.0f, -2.0f, 2.0f);
 
     //identity matrix (since the cube is at the origin
     glm::mat4 model = glm::mat4(1.0f);
@@ -98,21 +92,21 @@ static void keyHandler(GLFWwindow* window, int key, int scancode, int action, in
         std::cout<<"CLOSING"<<std::endl;
         glfwSetWindowShouldClose(window, GL_TRUE);
     }
+    //move up
     if (key == GLFW_KEY_W && action == GLFW_PRESS){
-        std::cout<<"W PRESSED"<<std::endl;
-        cameraPos += cameraFront * (float)Window::getFrameTime() * speed;
+        view = glm::translate(view, glm::vec3(0.f,-0.5f,0.f));
     }
+    //move down
     if (key == GLFW_KEY_S && action == GLFW_PRESS){
-        std::cout<<"S PRESSED"<<std::endl;
-        cameraPos -= cameraFront * (float)Window::getFrameTime() * speed;
+        view = glm::translate(view, glm::vec3(0.f,0.5f,0.f));
     }
+    //move right
     if (key == GLFW_KEY_D && action == GLFW_PRESS){
-        std::cout<<"D PRESSED"<<std::endl;
-        cameraPos += cameraRight * (float)Window::getFrameTime() * speed;
+        view = glm::translate(view, glm::vec3(-0.5f,0.f,0.f));
     }
+    //move left
     if (key == GLFW_KEY_A && action == GLFW_PRESS){
-        std::cout<<"A PRESSED"<<std::endl;
-        cameraPos += cameraRight * (float)Window::getFrameTime() * speed;
+        view = glm::translate(view, glm::vec3(0.5f,0.f,0.f));
     }
 }
 
@@ -153,8 +147,12 @@ void init() {
     w = Window::width();
     h = Window::height();
 
+    glEnable(GL_CULL_FACE);
     glEnable(GL_DEPTH_TEST);
     glDepthFunc(GL_LESS);
+
+    //hides the cursor
+    glfwSetInputMode(Window::getWindow(), GLFW_CURSOR, GLFW_CURSOR_HIDDEN);
 
     glGenVertexArrays(1, &vertexArray);
     glBindVertexArray(vertexArray);

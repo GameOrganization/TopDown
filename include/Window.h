@@ -34,6 +34,8 @@ void update();
 double getFrameTime();
 int getFPS();
 
+GLFWwindow* getWindow();
+
 } //namespace Window
 
 #endif // WINDOW_H
