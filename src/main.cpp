@@ -9,7 +9,7 @@
 #define GLFW_INCLUDE_GLU
 #include "Window.h"
 #include "GLUtil.h"
-#include <Vec2f.h>
+#include "Vec2f.h"
 
 #define VSYNC 1
 
@@ -36,8 +36,8 @@ static const GLfloat plane[] = {
 };
 
 void update(float time) {
-    int err;
-    if (err = glGetError()) {
+    int err = glGetError();
+    if (err) {
         std::cout << "ERROR: " << gluErrorString(err) << std::endl;
     }
 
