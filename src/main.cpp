@@ -11,7 +11,7 @@
 #include "GLUtil.h"
 #include "Vec2f.h"
 
-#define VSYNC 1
+#define VSYNC 0
 
 void init();
 void update(float time);
