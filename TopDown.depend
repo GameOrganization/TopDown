@@ -68,15 +68,16 @@
 	<fstream>
 	<iostream>
 
-1406647226 source:d:\github\topdown\src\glutil.cpp
+1407173336 source:d:\github\topdown\src\glutil.cpp
 	"GLUtil.h"
 	<string>
 	<vector>
 	<fstream>
 	<iostream>
 	<cstdlib>
+	<SOIL.h>
 
-1406570327 d:\github\topdown\include\glutil.h
+1407171722 d:\github\topdown\include\glutil.h
 	<GL/glew.h>
 	<GL/wglew.h>
 
@@ -91,7 +92,7 @@
 1374502400 d:\github\topdown\include\gl\wglew.h
 	<windows.h>
 
-1406940145 source:d:\github\topdown\src\main.cpp
+1407173338 source:d:\github\topdown\src\main.cpp
 	<iostream>
 	<stdlib.h>
 	<glm/glm.hpp>
@@ -1389,4 +1390,6 @@
 	"camera.h"
 
 1406736976 d:\github\topdown\include\camera.h
+
+1215468808 d:\github\topdown\include\soil.h
 

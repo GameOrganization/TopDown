@@ -5,6 +5,7 @@
 #include <fstream>
 #include <iostream>
 #include <cstdlib>
+#include <SOIL.h>
 
 //GLuint vertexArray = 0;
 /*
@@ -17,6 +18,16 @@ void GLUtil::initGL(float w, float h) {
 
 }
 */
+
+GLuint GLUtil::loadTexture(const char* filename) {
+    std::cout << "Loading texture: " << filename << std::endl;
+    GLuint texture = SOIL_load_OGL_texture(filename, SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_POWER_OF_TWO); //idk what flags we need, add more with | operato
+    if (!texture) {
+        std::cout << "Error loading texture " << filename << ": " << SOIL_last_result() << std::endl;
+    }
+    return texture;
+}
+
 GLuint GLUtil::loadShaderProgram(const char* vertFile, const char* fragFile){
 
     //ID's for the two shaders

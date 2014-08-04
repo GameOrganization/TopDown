@@ -11,7 +11,7 @@
 #include "GLUtil.h"
 #include "Vec2f.h"
 
-#define VSYNC 0
+#define VSYNC 1
 
 void init();
 void update(float time);
@@ -19,7 +19,8 @@ void draw();
 
 float w = 0.0f, h = 0.0f;
 
-GLuint vertexArray, vertexBuffer, colorBuffer;
+GLuint vertexArray, vertexBuffer, uvBuffer;
+GLuint texture;
 
 Vec2f camera;
 
@@ -28,11 +29,20 @@ GLuint programID, mvpID;
 //changed it from a cube to a plane, since that's what we'll be using most likely
 static const GLfloat plane[] = {
      1.0f,  1.0f, 0.0f,
-    -1.0f, 1.0f, 0.0f,
+    -1.0f,  1.0f, 0.0f,
      1.0f, -1.0f, 0.0f,
     -1.0f, -1.0f, 0.0f,
      1.0f, -1.0f, 0.0f,
     -1.0f,  1.0f, 0.0f,
+};
+
+static const GLfloat uv[] = {
+    1.0f, 1.0f,
+    0.0f, 1.0f,
+    1.0f, 0.0f,
+    0.0f, 0.0f,
+    1.0f, 0.0f,
+    0.0f, 1.0f,
 };
 
 void update(float time) {
@@ -102,8 +112,10 @@ int main(int argc, char *argv[]) {
     }
 
     //Initialize world
+    std::cout << "INIT" << std::endl;
     init();
 
+    std::cout << "LOOP" << std::endl;
     //Loop updates world, draws it, and then shows it on the screen
     while (Window::isOpen()) {
         update((float)Window::getFrameTime());
@@ -144,9 +156,9 @@ void init() {
     glBufferData(GL_ARRAY_BUFFER, sizeof(plane), plane, GL_STATIC_DRAW);
 
     //generating and binding the color buffer, using the vertices positions as rgb values
-    glGenBuffers(1, &colorBuffer);
-    glBindBuffer(GL_ARRAY_BUFFER, colorBuffer);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(plane), plane, GL_STATIC_DRAW);
+    glGenBuffers(1, &uvBuffer);
+    glBindBuffer(GL_ARRAY_BUFFER, uvBuffer);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(uv), uv, GL_STATIC_DRAW);
 
     //setting the 'clear' color (color of the background after clearing it)
     glClearColor(0.0f, 0.0f, 0.5f, 0.0f);
@@ -156,6 +168,14 @@ void init() {
     std::cout << programID << std::endl;
     glUseProgram(programID);
     mvpID = glGetUniformLocation(programID, "MVP");
+    GLuint texID = glGetUniformLocation(programID, "tex");
+
+    glActiveTexture(GL_TEXTURE0);
+    texture = GLUtil::loadTexture("test.png");
+    glBindTexture(GL_TEXTURE_2D, texture);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+    glUniform1i(texID, 0);
 
 }
 
@@ -170,8 +190,8 @@ void draw(){
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, (void*)0);
     //loading the colors
     glEnableVertexAttribArray(1);
-    glBindBuffer(GL_ARRAY_BUFFER, colorBuffer);
-    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 0, (void*)0);
+    glBindBuffer(GL_ARRAY_BUFFER, uvBuffer);
+    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 0, (void*)0);
     //6 faces, 2 triangles per face, 3 vertices per triangle
     glDrawArrays(GL_TRIANGLES, 0, sizeof(plane));
     glDisableVertexAttribArray(0);
