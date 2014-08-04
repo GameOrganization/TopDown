@@ -17,7 +17,7 @@ void init();
 void update(float time);
 void draw();
 
-float w = 0.0f, h = 0.0f, fov = 45.0f, speed = 3.0f;
+float w = 0.0f, h = 0.0f;
 
 GLuint vertexArray, vertexBuffer, colorBuffer;
 
@@ -63,12 +63,17 @@ void update(float time) {
     if (motion.lengthSquared() > 0) {
         motion.normalize();
         camera += motion * time;
+        static const GLfloat player[] = {
+             0.3f + motion.x,  0.3f + motion.y, 0.1f,
+            -0.3f + motion.x,  0.3f + motion.y, 0.1f,
+             0.3f + motion.x, -0.3f + motion.y, 0.1f,
+            -0.3f + motion.x, -0.3f + motion.y, 0.1f,
+             0.3f + motion.x, -0.3f + motion.y, 0.1f,
+            -0.3f + motion.x,  0.3f + motion.y, 0.1f,
+        };
     }
 
     glm::mat4 view = glm::translate(glm::mat4(1.0f), glm::vec3(camera.x, camera.y, 0.0f));
-
-    //model = glm::rotate(model, 30.0f, glm::vec3(0.0f, 1.0f, 0.0f));
-    //model = glm::rotate(model, 30.0f, glm::vec3(1.0f, 0.0f, 0.0f));
 
     glm::mat4 model = glm::mat4(1.0f);
 
