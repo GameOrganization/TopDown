@@ -69,20 +69,20 @@
 	<fstream>
 	<iostream>
 
-1407173336 source:d:\github\topdown\src\glutil.cpp
+1407248755 source:d:\github\topdown\src\glutil.cpp
 	"GLUtil.h"
 	<string>
 	<vector>
 	<fstream>
 	<iostream>
 	<cstdlib>
-	<SOIL.h>
+	"lodepng.h"
 
-1407171722 d:\github\topdown\include\glutil.h
+1407247520 d:\github\topdown\include\glutil.h
 	<GL/glew.h>
 	<GL/wglew.h>
 
-1374502400 d:\github\topdown\include\gl\glew.h
+1407247520 d:\github\topdown\include\gl\glew.h
 	<stddef.h>
 	<inttypes.h>
 	<stdint.h>
@@ -90,10 +90,10 @@
 	<OpenGL/glu.h>
 	<GL/glu.h>
 
-1374502400 d:\github\topdown\include\gl\wglew.h
+1407247520 d:\github\topdown\include\gl\wglew.h
 	<windows.h>
 
-1407173338 source:d:\github\topdown\src\main.cpp
+1407247520 source:d:\github\topdown\src\main.cpp
 	<iostream>
 	<stdlib.h>
 	<glm/glm.hpp>
@@ -105,11 +105,11 @@
 	"GLUtil.h"
 	"Vec2f.h"
 
-1406940058 d:\github\topdown\include\window.h
+1407247520 d:\github\topdown\include\window.h
 	"GL/glew.h"
 	"GLFW/glfw3.h"
 
-1388520873 d:\github\topdown\include\glfw\glfw3.h
+1407247520 d:\github\topdown\include\glfw\glfw3.h
 	<stddef.h>
 	<OpenGL/gl3.h>
 	<OpenGL/gl.h>
@@ -121,14 +121,14 @@
 	<GL/gl.h>
 	<GL/glu.h>
 
-1406561511 source:d:\github\topdown\src\vec2f.cpp
+1407247520 source:d:\github\topdown\src\vec2f.cpp
 	<math.h>
 	"Vec2f.h"
 
-1402538893 d:\github\topdown\include\vec2f.h
+1407247520 d:\github\topdown\include\vec2f.h
 	<iostream>
 
-1406940058 source:d:\github\topdown\src\window.cpp
+1407249125 source:d:\github\topdown\src\window.cpp
 	"Window.h"
 	<iostream>
 
@@ -526,7 +526,7 @@
 
 1389483479 c:\users\mike\documents\github\topdown\include\glm\glm\gtx\transform.inl
 
-1389483479 d:\github\topdown\include\glm\glm.hpp
+1407247520 d:\github\topdown\include\glm\glm.hpp
 	"detail/_fixes.hpp"
 	<cmath>
 	<climits>
@@ -555,20 +555,20 @@
 	"vector_relational.hpp"
 	"integer.hpp"
 
-1389483479 d:\github\topdown\include\glm\detail\_fixes.hpp
+1407247520 d:\github\topdown\include\glm\detail\_fixes.hpp
 	<cmath>
 
-1389483479 d:\github\topdown\include\glm\fwd.hpp
+1407247520 d:\github\topdown\include\glm\fwd.hpp
 	"detail/type_int.hpp"
 	"detail/type_float.hpp"
 	"detail/type_vec.hpp"
 	"detail/type_mat.hpp"
 
-1389483479 d:\github\topdown\include\glm\detail\type_int.hpp
+1407247520 d:\github\topdown\include\glm\detail\type_int.hpp
 	"setup.hpp"
 	<cstdint>
 
-1403361214 d:\github\topdown\include\glm\detail\setup.hpp
+1407247520 d:\github\topdown\include\glm\detail\setup.hpp
 	<cassert>
 	<cuda.h>
 	<intrin.h>
@@ -578,50 +578,50 @@
 	<pmmintrin.h>
 	<emmintrin.h>
 
-1389483479 d:\github\topdown\include\glm\detail\type_float.hpp
+1407247520 d:\github\topdown\include\glm\detail\type_float.hpp
 	"setup.hpp"
 
-1389483479 d:\github\topdown\include\glm\detail\type_vec.hpp
+1407247520 d:\github\topdown\include\glm\detail\type_vec.hpp
 	"precision.hpp"
 	"type_int.hpp"
 
-1389483479 d:\github\topdown\include\glm\detail\precision.hpp
+1407247520 d:\github\topdown\include\glm\detail\precision.hpp
 
-1389483479 d:\github\topdown\include\glm\detail\type_mat.hpp
+1407247520 d:\github\topdown\include\glm\detail\type_mat.hpp
 	"precision.hpp"
 
-1389483479 d:\github\topdown\include\glm\vec2.hpp
+1407247520 d:\github\topdown\include\glm\vec2.hpp
 	"detail/type_vec2.hpp"
 
-1403361214 d:\github\topdown\include\glm\detail\type_vec2.hpp
+1407247520 d:\github\topdown\include\glm\detail\type_vec2.hpp
 	"type_vec.hpp"
 	"_swizzle.hpp"
 	"_swizzle_func.hpp"
 	<cstddef>
 	"type_vec2.inl"
 
-1389483479 d:\github\topdown\include\glm\detail\_swizzle.hpp
+1407247520 d:\github\topdown\include\glm\detail\_swizzle.hpp
 
-1389483479 d:\github\topdown\include\glm\detail\_swizzle_func.hpp
+1407247520 d:\github\topdown\include\glm\detail\_swizzle_func.hpp
 
-1393357677 d:\github\topdown\include\glm\detail\type_vec2.inl
+1407247520 d:\github\topdown\include\glm\detail\type_vec2.inl
 
-1389483479 d:\github\topdown\include\glm\vec3.hpp
+1407247520 d:\github\topdown\include\glm\vec3.hpp
 	"detail/type_vec3.hpp"
 
-1403361214 d:\github\topdown\include\glm\detail\type_vec3.hpp
+1407247520 d:\github\topdown\include\glm\detail\type_vec3.hpp
 	"type_vec.hpp"
 	"_swizzle.hpp"
 	"_swizzle_func.hpp"
 	<cstddef>
 	"type_vec3.inl"
 
-1393357677 d:\github\topdown\include\glm\detail\type_vec3.inl
+1407247520 d:\github\topdown\include\glm\detail\type_vec3.inl
 
-1389483479 d:\github\topdown\include\glm\vec4.hpp
+1407247520 d:\github\topdown\include\glm\vec4.hpp
 	"detail/type_vec4.hpp"
 
-1403361214 d:\github\topdown\include\glm\detail\type_vec4.hpp
+1407247520 d:\github\topdown\include\glm\detail\type_vec4.hpp
 	"setup.hpp"
 	"type_vec.hpp"
 	"_swizzle.hpp"
@@ -629,24 +629,24 @@
 	<cstddef>
 	"type_vec4.inl"
 
-1403361214 d:\github\topdown\include\glm\detail\type_vec4.inl
+1407247520 d:\github\topdown\include\glm\detail\type_vec4.inl
 
-1389483479 d:\github\topdown\include\glm\mat2x2.hpp
+1407247520 d:\github\topdown\include\glm\mat2x2.hpp
 	"detail/type_mat2x2.hpp"
 
-1403361214 d:\github\topdown\include\glm\detail\type_mat2x2.hpp
+1407247520 d:\github\topdown\include\glm\detail\type_mat2x2.hpp
 	"../fwd.hpp"
 	"type_vec2.hpp"
 	"type_mat.hpp"
 	<limits>
 	"type_mat2x2.inl"
 
-1403361214 d:\github\topdown\include\glm\detail\type_mat2x2.inl
+1407247520 d:\github\topdown\include\glm\detail\type_mat2x2.inl
 
-1389483479 d:\github\topdown\include\glm\mat2x3.hpp
+1407247520 d:\github\topdown\include\glm\mat2x3.hpp
 	"detail/type_mat2x3.hpp"
 
-1403361214 d:\github\topdown\include\glm\detail\type_mat2x3.hpp
+1407247520 d:\github\topdown\include\glm\detail\type_mat2x3.hpp
 	"../fwd.hpp"
 	"type_vec2.hpp"
 	"type_vec3.hpp"
@@ -654,12 +654,12 @@
 	<limits>
 	"type_mat2x3.inl"
 
-1393355593 d:\github\topdown\include\glm\detail\type_mat2x3.inl
+1407247520 d:\github\topdown\include\glm\detail\type_mat2x3.inl
 
-1389483479 d:\github\topdown\include\glm\mat2x4.hpp
+1407247520 d:\github\topdown\include\glm\mat2x4.hpp
 	"detail/type_mat2x4.hpp"
 
-1403361214 d:\github\topdown\include\glm\detail\type_mat2x4.hpp
+1407247520 d:\github\topdown\include\glm\detail\type_mat2x4.hpp
 	"../fwd.hpp"
 	"type_vec2.hpp"
 	"type_vec4.hpp"
@@ -667,12 +667,12 @@
 	<limits>
 	"type_mat2x4.inl"
 
-1393355593 d:\github\topdown\include\glm\detail\type_mat2x4.inl
+1407247520 d:\github\topdown\include\glm\detail\type_mat2x4.inl
 
-1389483479 d:\github\topdown\include\glm\mat3x2.hpp
+1407247520 d:\github\topdown\include\glm\mat3x2.hpp
 	"detail/type_mat3x2.hpp"
 
-1403361214 d:\github\topdown\include\glm\detail\type_mat3x2.hpp
+1407247520 d:\github\topdown\include\glm\detail\type_mat3x2.hpp
 	"../fwd.hpp"
 	"type_vec2.hpp"
 	"type_vec3.hpp"
@@ -680,24 +680,24 @@
 	<limits>
 	"type_mat3x2.inl"
 
-1393355593 d:\github\topdown\include\glm\detail\type_mat3x2.inl
+1407247520 d:\github\topdown\include\glm\detail\type_mat3x2.inl
 
-1389483479 d:\github\topdown\include\glm\mat3x3.hpp
+1407247520 d:\github\topdown\include\glm\mat3x3.hpp
 	"detail/type_mat3x3.hpp"
 
-1403361214 d:\github\topdown\include\glm\detail\type_mat3x3.hpp
+1407247520 d:\github\topdown\include\glm\detail\type_mat3x3.hpp
 	"../fwd.hpp"
 	"type_vec3.hpp"
 	"type_mat.hpp"
 	<limits>
 	"type_mat3x3.inl"
 
-1403361214 d:\github\topdown\include\glm\detail\type_mat3x3.inl
+1407247520 d:\github\topdown\include\glm\detail\type_mat3x3.inl
 
-1389483479 d:\github\topdown\include\glm\mat3x4.hpp
+1407247520 d:\github\topdown\include\glm\mat3x4.hpp
 	"detail/type_mat3x4.hpp"
 
-1403361214 d:\github\topdown\include\glm\detail\type_mat3x4.hpp
+1407247520 d:\github\topdown\include\glm\detail\type_mat3x4.hpp
 	"../fwd.hpp"
 	"type_vec3.hpp"
 	"type_vec4.hpp"
@@ -705,12 +705,12 @@
 	<limits>
 	"type_mat3x4.inl"
 
-1393355593 d:\github\topdown\include\glm\detail\type_mat3x4.inl
+1407247520 d:\github\topdown\include\glm\detail\type_mat3x4.inl
 
-1389483479 d:\github\topdown\include\glm\mat4x2.hpp
+1407247520 d:\github\topdown\include\glm\mat4x2.hpp
 	"detail/type_mat4x2.hpp"
 
-1403361214 d:\github\topdown\include\glm\detail\type_mat4x2.hpp
+1407247520 d:\github\topdown\include\glm\detail\type_mat4x2.hpp
 	"../fwd.hpp"
 	"type_vec2.hpp"
 	"type_vec4.hpp"
@@ -718,12 +718,12 @@
 	<limits>
 	"type_mat4x2.inl"
 
-1393355593 d:\github\topdown\include\glm\detail\type_mat4x2.inl
+1407247520 d:\github\topdown\include\glm\detail\type_mat4x2.inl
 
-1389483479 d:\github\topdown\include\glm\mat4x3.hpp
+1407247520 d:\github\topdown\include\glm\mat4x3.hpp
 	"detail/type_mat4x3.hpp"
 
-1403361214 d:\github\topdown\include\glm\detail\type_mat4x3.hpp
+1407247520 d:\github\topdown\include\glm\detail\type_mat4x3.hpp
 	"../fwd.hpp"
 	"type_vec3.hpp"
 	"type_vec4.hpp"
@@ -731,12 +731,12 @@
 	<limits>
 	"type_mat4x3.inl"
 
-1393355593 d:\github\topdown\include\glm\detail\type_mat4x3.inl
+1407247520 d:\github\topdown\include\glm\detail\type_mat4x3.inl
 
-1389483479 d:\github\topdown\include\glm\mat4x4.hpp
+1407247520 d:\github\topdown\include\glm\mat4x4.hpp
 	"detail/type_mat4x4.hpp"
 
-1403361214 d:\github\topdown\include\glm\detail\type_mat4x4.hpp
+1407247520 d:\github\topdown\include\glm\detail\type_mat4x4.hpp
 	"../fwd.hpp"
 	"type_vec4.hpp"
 	"type_mat.hpp"
@@ -744,26 +744,26 @@
 	<cstddef>
 	"type_mat4x4.inl"
 
-1393355593 d:\github\topdown\include\glm\detail\type_mat4x4.inl
+1407247520 d:\github\topdown\include\glm\detail\type_mat4x4.inl
 
-1389483479 d:\github\topdown\include\glm\trigonometric.hpp
+1407247520 d:\github\topdown\include\glm\trigonometric.hpp
 	"detail/func_trigonometric.hpp"
 
-1389483479 d:\github\topdown\include\glm\detail\func_trigonometric.hpp
+1407247520 d:\github\topdown\include\glm\detail\func_trigonometric.hpp
 	"func_trigonometric.inl"
 
-1389483479 d:\github\topdown\include\glm\detail\func_trigonometric.inl
+1407247520 d:\github\topdown\include\glm\detail\func_trigonometric.inl
 	"_vectorize.hpp"
 	<cmath>
 	<limits>
 
-1393355593 d:\github\topdown\include\glm\detail\_vectorize.hpp
+1407247520 d:\github\topdown\include\glm\detail\_vectorize.hpp
 	"type_vec1.hpp"
 	"type_vec2.hpp"
 	"type_vec3.hpp"
 	"type_vec4.hpp"
 
-1403361214 d:\github\topdown\include\glm\detail\type_vec1.hpp
+1407247520 d:\github\topdown\include\glm\detail\type_vec1.hpp
 	"../fwd.hpp"
 	"type_vec.hpp"
 	"_swizzle.hpp"
@@ -771,12 +771,12 @@
 	<cstddef>
 	"type_vec1.inl"
 
-1393357677 d:\github\topdown\include\glm\detail\type_vec1.inl
+1407247520 d:\github\topdown\include\glm\detail\type_vec1.inl
 
-1389483479 d:\github\topdown\include\glm\exponential.hpp
+1407247520 d:\github\topdown\include\glm\exponential.hpp
 	"detail/func_exponential.hpp"
 
-1393355593 d:\github\topdown\include\glm\detail\func_exponential.hpp
+1407247520 d:\github\topdown\include\glm\detail\func_exponential.hpp
 	"type_vec1.hpp"
 	"type_vec2.hpp"
 	"type_vec3.hpp"
@@ -784,31 +784,31 @@
 	<cmath>
 	"func_exponential.inl"
 
-1396394862 d:\github\topdown\include\glm\detail\func_exponential.inl
+1407247520 d:\github\topdown\include\glm\detail\func_exponential.inl
 	"func_vector_relational.hpp"
 	"_vectorize.hpp"
 	<limits>
 	<cassert>
 
-1389483479 d:\github\topdown\include\glm\detail\func_vector_relational.hpp
+1407247520 d:\github\topdown\include\glm\detail\func_vector_relational.hpp
 	"precision.hpp"
 	"setup.hpp"
 	"func_vector_relational.inl"
 
-1389483479 d:\github\topdown\include\glm\detail\func_vector_relational.inl
+1407247520 d:\github\topdown\include\glm\detail\func_vector_relational.inl
 	<limits>
 
-1389483479 d:\github\topdown\include\glm\common.hpp
+1407247520 d:\github\topdown\include\glm\common.hpp
 	"detail/func_common.hpp"
 
-1403361214 d:\github\topdown\include\glm\detail\func_common.hpp
+1407247520 d:\github\topdown\include\glm\detail\func_common.hpp
 	"setup.hpp"
 	"precision.hpp"
 	"type_int.hpp"
 	"_fixes.hpp"
 	"func_common.inl"
 
-1403287823 d:\github\topdown\include\glm\detail\func_common.inl
+1407247520 d:\github\topdown\include\glm\detail\func_common.inl
 	"func_vector_relational.hpp"
 	"type_vec2.hpp"
 	"type_vec3.hpp"
@@ -816,43 +816,43 @@
 	"_vectorize.hpp"
 	<limits>
 
-1389483479 d:\github\topdown\include\glm\packing.hpp
+1407247520 d:\github\topdown\include\glm\packing.hpp
 	"detail/func_packing.hpp"
 
-1389483479 d:\github\topdown\include\glm\detail\func_packing.hpp
+1407247520 d:\github\topdown\include\glm\detail\func_packing.hpp
 	"type_vec2.hpp"
 	"type_vec4.hpp"
 	"func_packing.inl"
 
-1403287823 d:\github\topdown\include\glm\detail\func_packing.inl
+1407247520 d:\github\topdown\include\glm\detail\func_packing.inl
 	"func_common.hpp"
 	"type_half.hpp"
 	"../fwd.hpp"
 
-1389483479 d:\github\topdown\include\glm\detail\type_half.hpp
+1407247520 d:\github\topdown\include\glm\detail\type_half.hpp
 	"setup.hpp"
 	"type_half.inl"
 
-1403287823 d:\github\topdown\include\glm\detail\type_half.inl
+1407247520 d:\github\topdown\include\glm\detail\type_half.inl
 
-1389483479 d:\github\topdown\include\glm\geometric.hpp
+1407247520 d:\github\topdown\include\glm\geometric.hpp
 	"detail/func_geometric.hpp"
 
-1389483479 d:\github\topdown\include\glm\detail\func_geometric.hpp
+1407247520 d:\github\topdown\include\glm\detail\func_geometric.hpp
 	"type_vec3.hpp"
 	"func_geometric.inl"
 
-1403287823 d:\github\topdown\include\glm\detail\func_geometric.inl
+1407247520 d:\github\topdown\include\glm\detail\func_geometric.inl
 	"func_exponential.hpp"
 	"func_common.hpp"
 	"type_vec2.hpp"
 	"type_vec4.hpp"
 	"type_float.hpp"
 
-1389483479 d:\github\topdown\include\glm\matrix.hpp
+1407247520 d:\github\topdown\include\glm\matrix.hpp
 	"detail/func_matrix.hpp"
 
-1389483479 d:\github\topdown\include\glm\detail\func_matrix.hpp
+1407247520 d:\github\topdown\include\glm\detail\func_matrix.hpp
 	"../detail/precision.hpp"
 	"../detail/setup.hpp"
 	"../detail/type_mat.hpp"
@@ -870,21 +870,21 @@
 	"../mat4x4.hpp"
 	"func_matrix.inl"
 
-1403361214 d:\github\topdown\include\glm\detail\func_matrix.inl
+1407247520 d:\github\topdown\include\glm\detail\func_matrix.inl
 	"../geometric.hpp"
 	<limits>
 
-1389483479 d:\github\topdown\include\glm\vector_relational.hpp
+1407247520 d:\github\topdown\include\glm\vector_relational.hpp
 	"detail/func_vector_relational.hpp"
 
-1389483479 d:\github\topdown\include\glm\integer.hpp
+1407247520 d:\github\topdown\include\glm\integer.hpp
 	"detail/func_integer.hpp"
 
-1389483479 d:\github\topdown\include\glm\detail\func_integer.hpp
+1407247520 d:\github\topdown\include\glm\detail\func_integer.hpp
 	"setup.hpp"
 	"func_integer.inl"
 
-1396394862 d:\github\topdown\include\glm\detail\func_integer.inl
+1407247520 d:\github\topdown\include\glm\detail\func_integer.inl
 	"type_vec2.hpp"
 	"type_vec3.hpp"
 	"type_vec4.hpp"
@@ -893,7 +893,7 @@
 	<intrin.h>
 	<limits>
 
-1403356713 d:\github\topdown\include\glm\gtc\matrix_transform.hpp
+1407247520 d:\github\topdown\include\glm\gtc\matrix_transform.hpp
 	"../mat4x4.hpp"
 	"../vec2.hpp"
 	"../vec3.hpp"
@@ -901,26 +901,26 @@
 	"../gtc/constants.hpp"
 	"matrix_transform.inl"
 
-1393355593 d:\github\topdown\include\glm\gtc\constants.hpp
+1407247520 d:\github\topdown\include\glm\gtc\constants.hpp
 	"../detail/setup.hpp"
 	"constants.inl"
 
-1389483479 d:\github\topdown\include\glm\gtc\constants.inl
+1407247520 d:\github\topdown\include\glm\gtc\constants.inl
 	<limits>
 
-1403356713 d:\github\topdown\include\glm\gtc\matrix_transform.inl
+1407247520 d:\github\topdown\include\glm\gtc\matrix_transform.inl
 	"../geometric.hpp"
 	"../trigonometric.hpp"
 	"../matrix.hpp"
 
-1396394829 d:\github\topdown\include\glm\gtx\transform.hpp
+1407247520 d:\github\topdown\include\glm\gtx\transform.hpp
 	"../glm.hpp"
 	"../gtc/matrix_transform.hpp"
 	"transform.inl"
 
-1389483479 d:\github\topdown\include\glm\gtx\transform.inl
+1407247520 d:\github\topdown\include\glm\gtx\transform.inl
 
-1389483479 d:\github\topdown\include\glm\gtc\type_ptr.hpp
+1407247520 d:\github\topdown\include\glm\gtc\type_ptr.hpp
 	"../gtc/quaternion.hpp"
 	"../vec2.hpp"
 	"../vec3.hpp"
@@ -937,7 +937,7 @@
 	<cstring>
 	"type_ptr.inl"
 
-1403301671 d:\github\topdown\include\glm\gtc\quaternion.hpp
+1407247520 d:\github\topdown\include\glm\gtc\quaternion.hpp
 	"../mat3x3.hpp"
 	"../mat4x4.hpp"
 	"../vec3.hpp"
@@ -945,13 +945,13 @@
 	"../gtc/constants.hpp"
 	"quaternion.inl"
 
-1403287823 d:\github\topdown\include\glm\gtc\quaternion.inl
+1407247520 d:\github\topdown\include\glm\gtc\quaternion.inl
 	"../trigonometric.hpp"
 	"../geometric.hpp"
 	"../exponential.hpp"
 	<limits>
 
-1389483479 d:\github\topdown\include\glm\gtc\type_ptr.inl
+1407247520 d:\github\topdown\include\glm\gtc\type_ptr.inl
 	<cstring>
 
 1406643071 c:\users\mike\documents\github\topdown\include\glm\glm.hpp
@@ -1387,12 +1387,26 @@
 
 1406734748 c:\users\mike\documents\github\topdown\include\camera.h
 
-1406736976 source:d:\github\topdown\src\camera.cpp
+1407247520 source:d:\github\topdown\src\camera.cpp
 	"camera.h"
 
-1406736976 d:\github\topdown\include\camera.h
+1407247520 d:\github\topdown\include\camera.h
 
 1215468808 d:\github\topdown\include\soil.h
 
 1407173730 c:\users\mike\documents\github\topdown\include\soil.h
+
+1407247546 d:\github\topdown\include\lodepng.h
+	<string.h>
+	<vector>
+	<string>
+	"lodepng.h"
+	<iostream>
+	"lodepng.h"
+
+1407247554 source:d:\github\topdown\src\lodepng.cpp
+	"lodepng.h"
+	<stdio.h>
+	<stdlib.h>
+	<fstream>
 

@@ -73,14 +73,14 @@ void update(float time) {
     if (motion.lengthSquared() > 0) {
         motion.normalize();
         camera += motion * time;
-        static const GLfloat player[] = {
+/*        static const GLfloat player[] = {
              0.3f + motion.x,  0.3f + motion.y, 0.1f,
             -0.3f + motion.x,  0.3f + motion.y, 0.1f,
              0.3f + motion.x, -0.3f + motion.y, 0.1f,
             -0.3f + motion.x, -0.3f + motion.y, 0.1f,
              0.3f + motion.x, -0.3f + motion.y, 0.1f,
             -0.3f + motion.x,  0.3f + motion.y, 0.1f,
-        };
+        };  */
     }
 
     glm::mat4 view = glm::translate(glm::mat4(1.0f), glm::vec3(camera.x, camera.y, 0.0f));

@@ -5,7 +5,7 @@
 #include <fstream>
 #include <iostream>
 #include <cstdlib>
-#include <SOIL.h>
+#include "lodepng.h"
 
 //GLuint vertexArray = 0;
 /*
@@ -20,12 +20,22 @@ void GLUtil::initGL(float w, float h) {
 */
 
 GLuint GLUtil::loadTexture(const char* filename) {
-    std::cout << "Loading texture: " << filename << std::endl;
-    GLuint texture = SOIL_load_OGL_texture(filename, SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_POWER_OF_TWO | SOIL_FLAG_INVERT_Y); //idk what flags we need, add more with | operato
-    if (!texture) {
-        std::cout << "Error loading texture " << filename << ": " << SOIL_last_result() << std::endl;
+    GLuint tex = 0;
+    std::vector<unsigned char> image;
+    unsigned width, height;
+    unsigned error = lodepng::decode(image, width, height, filename);
+    if(error) {
+        std::cout << "Decoder error " << error << ": " << lodepng_error_text(error) << std::endl;
+        return 0;
     }
-    return texture;
+
+    glGenTextures(1, &tex);
+    glBindTexture(GL_TEXTURE_2D, tex);
+    glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+    glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, &image[0]);
+
+    return tex;
 }
 
 GLuint GLUtil::loadShaderProgram(const char* vertFile, const char* fragFile){

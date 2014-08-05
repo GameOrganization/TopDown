@@ -24,8 +24,8 @@ static void error(int error, const char* description) {
 }
 
 void checkError(const char *name) {
-    int err;
-    if (err = glGetError()) {
+    int err = glGetError();
+    if (err) {
         std::cout << name << " - ERROR: " << gluErrorString(err) << std::endl;
     }
 }
