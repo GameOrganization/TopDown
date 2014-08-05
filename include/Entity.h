@@ -1,4 +1,4 @@
-#ifndef ENTITY_H
+ #ifndef ENTITY_H
 #define ENTITY_H
 #include "Vec2f.h"
 #include <string>
