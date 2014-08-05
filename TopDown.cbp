@@ -34,16 +34,16 @@
 		</Compiler>
 		<Unit filename="bin/Release/fragmentShader.txt" />
 		<Unit filename="bin/Release/vertexShader.txt" />
+		<Unit filename="include/Entity.h" />
 		<Unit filename="include/GLUtil.h" />
 		<Unit filename="include/Vec2f.h" />
 		<Unit filename="include/Window.h" />
 		<Unit filename="include/camera.h" />
-		<Unit filename="include/lodepng.h" />
+		<Unit filename="src/Entity.cpp" />
 		<Unit filename="src/GLUtil.cpp" />
 		<Unit filename="src/Vec2f.cpp" />
 		<Unit filename="src/Window.cpp" />
 		<Unit filename="src/camera.cpp" />
-		<Unit filename="src/lodepng.cpp" />
 		<Unit filename="src/main.cpp" />
 		<Extensions>
 			<code_completion />

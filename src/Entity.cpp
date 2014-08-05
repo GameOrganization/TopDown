@@ -16,25 +16,25 @@ Entity::Entity(std::string n, Vec2f p, float w, float h, std::string path){
 
 Entity::~Entity(){}
 
-Entity::void update(float time);
+void Entity::update(float time){}
 
-Entity::void setPos(float x, float y){
+void Entity::setPos(float x, float y){
     pos = Vec2f(x, y);
 }
-Entity::Vec2f getPos(){
+Vec2f Entity::getPos(){
     return pos;
 }
 
-Entity::float getWidth(){
+float Entity::getWidth(){
     return width;
 }
-Entity::float getHeight(){
+float Entity::getHeight(){
     return height;
 }
 
-Entity::void setName(std::string newName){
+void Entity::setName(std::string newName){
     name = newName;
 }
-Entity::std::string getName(){
+std::string Entity::getName(){
     return name;
 }
