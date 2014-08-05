@@ -21,7 +21,7 @@ void GLUtil::initGL(float w, float h) {
 
 GLuint GLUtil::loadTexture(const char* filename) {
     std::cout << "Loading texture: " << filename << std::endl;
-    GLuint texture = SOIL_load_OGL_texture(filename, SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_POWER_OF_TWO); //idk what flags we need, add more with | operato
+    GLuint texture = SOIL_load_OGL_texture(filename, SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_POWER_OF_TWO | SOIL_FLAG_INVERT_Y); //idk what flags we need, add more with | operato
     if (!texture) {
         std::cout << "Error loading texture " << filename << ": " << SOIL_last_result() << std::endl;
     }

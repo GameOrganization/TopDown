@@ -1,13 +1,14 @@
 # depslib dependency file v1.0
-1406648013 source:c:\users\mike\documents\github\topdown\src\glutil.cpp
+1407173730 source:c:\users\mike\documents\github\topdown\src\glutil.cpp
 	"GLUtil.h"
 	<string>
 	<vector>
 	<fstream>
 	<iostream>
 	<cstdlib>
+	<SOIL.h>
 
-1406570026 c:\users\mike\documents\github\topdown\include\glutil.h
+1407173730 c:\users\mike\documents\github\topdown\include\glutil.h
 	<GL/glew.h>
 	<GL/wglew.h>
 
@@ -19,7 +20,7 @@
 	<OpenGL/glu.h>
 	<GL/glu.h>
 
-1406917681 source:c:\users\mike\documents\github\topdown\src\main.cpp
+1407173730 source:c:\users\mike\documents\github\topdown\src\main.cpp
 	<iostream>
 	<stdlib.h>
 	<glm/glm.hpp>
@@ -29,7 +30,7 @@
 	<glm/gtc/type_ptr.hpp>
 	"Window.h"
 	"GLUtil.h"
-	<Vec2f.h>
+	"Vec2f.h"
 
 1406918028 c:\users\mike\documents\github\topdown\include\window.h
 	"GL/glew.h"
@@ -1392,4 +1393,6 @@
 1406736976 d:\github\topdown\include\camera.h
 
 1215468808 d:\github\topdown\include\soil.h
+
+1407173730 c:\users\mike\documents\github\topdown\include\soil.h
 
