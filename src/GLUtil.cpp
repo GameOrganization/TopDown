@@ -5,38 +5,6 @@
 #include <fstream>
 #include <iostream>
 #include <cstdlib>
-#include "lodepng.h"
-
-//GLuint vertexArray = 0;
-/*
-void GLUtil::initGL(float w, float h) {
-    //Initialize the vertex array
-    glGenVertexArrays(1, &vertexArray);
-    glBindVertexArray(vertexArray);
-
-
-
-}
-*/
-
-GLuint GLUtil::loadTexture(const char* filename) {
-    GLuint tex = 0;
-    std::vector<unsigned char> image;
-    unsigned width, height;
-    unsigned error = lodepng::decode(image, width, height, filename);
-    if(error) {
-        std::cout << "Decoder error " << error << ": " << lodepng_error_text(error) << std::endl;
-        return 0;
-    }
-
-    glGenTextures(1, &tex);
-    glBindTexture(GL_TEXTURE_2D, tex);
-    glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-    glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, &image[0]);
-
-    return tex;
-}
 
 GLuint GLUtil::loadShaderProgram(const char* vertFile, const char* fragFile){
 

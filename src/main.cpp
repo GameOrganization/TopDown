@@ -1,15 +1,16 @@
 #include <iostream>
 #include <stdlib.h>
 #define GLM_FORCE_RADIANS //suppresses errors about method deprecation, purely cosmetic
-#include <glm/glm.hpp>
-#include <glm/gtc/matrix_transform.hpp>
-#include <glm/gtx/transform.hpp>
-#include <glm/gtc/matrix_transform.hpp>
-#include <glm/gtc/type_ptr.hpp>
+#include <GL/glm/glm.hpp>
+#include <GL/glm/gtc/matrix_transform.hpp>
+#include <GL/glm/gtx/transform.hpp>
+#include <GL/glm/gtc/matrix_transform.hpp>
+#include <GL/glm/gtc/type_ptr.hpp>
 #define GLFW_INCLUDE_GLU
 #include "Window.h"
 #include "GLUtil.h"
 #include "Vec2f.h"
+#include "GL/Texture.h"
 
 #define VSYNC 1
 
@@ -20,7 +21,7 @@ void draw();
 float w = 0.0f, h = 0.0f;
 
 GLuint vertexArray, vertexBuffer, uvBuffer;
-GLuint texture;
+Texture* texture = NULL;
 
 Vec2f camera;
 
@@ -170,13 +171,9 @@ void init() {
     mvpID = glGetUniformLocation(programID, "MVP");
     GLuint texID = glGetUniformLocation(programID, "tex");
 
-    glActiveTexture(GL_TEXTURE0);
-    texture = GLUtil::loadTexture("test.png");
-    glBindTexture(GL_TEXTURE_2D, texture);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-    glUniform1i(texID, 0);
-
+    texture = new Texture("test.png");
+    texture->bind(1);
+    glUniform1i(texID, 1);
 }
 
 void draw(){

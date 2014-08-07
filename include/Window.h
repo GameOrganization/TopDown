@@ -8,7 +8,7 @@
 
 //GLFW handles creating windows for OpenGL cross-platform
 //Also can handle user input and timing
-#include "GLFW/glfw3.h"
+#include "GL/glfw3.h"
 
 //This will be the title of the window
 #define WINDOW_TITLE "Modern OpenGL"
