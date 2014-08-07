@@ -50,7 +50,7 @@ GLuint GLUtil::loadShaderProgram(const char* vertFile, const char* fragFile){
     glGetShaderiv(VertexShader, GL_INFO_LOG_LENGTH, &infoLogLength);
     char* VertexShaderMessage = (char*)malloc(infoLogLength);
     glGetShaderInfoLog(VertexShader, infoLogLength, NULL, VertexShaderMessage);
-    std::cout<<VertexShaderMessage<<std::endl;
+    if (strlen(VertexShaderMessage)) std::cout<<VertexShaderMessage<<std::endl;
     free(VertexShaderMessage);
 
     //compiling the fragment shader
@@ -64,7 +64,7 @@ GLuint GLUtil::loadShaderProgram(const char* vertFile, const char* fragFile){
     glGetShaderiv(FragmentShader, GL_INFO_LOG_LENGTH, &infoLogLength);
     char* FragmentShaderMessage = (char*)malloc(infoLogLength);
     glGetShaderInfoLog(FragmentShader, infoLogLength, NULL, FragmentShaderMessage);
-    std::cout<<FragmentShaderMessage<<std::endl;
+    if (strlen(FragmentShaderMessage)) std::cout<<FragmentShaderMessage<<std::endl;
 
     //link the two shaders with the program
     std::cout<<"Linking"<<std::endl;
@@ -78,7 +78,7 @@ GLuint GLUtil::loadShaderProgram(const char* vertFile, const char* fragFile){
     glGetShaderiv(ProgramID, GL_INFO_LOG_LENGTH, &infoLogLength);
     char* ProgramMessage = (char*)malloc(infoLogLength);
     glGetProgramInfoLog(ProgramID, infoLogLength, NULL, ProgramMessage);
-    std::cout<<ProgramMessage<<std::endl;
+    if (strlen(ProgramMessage)) std::cout<<ProgramMessage<<std::endl;
     free(ProgramMessage);
 
     //delete the shaders

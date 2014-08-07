@@ -6,7 +6,6 @@
 #include <GL/glm/gtx/transform.hpp>
 #include <GL/glm/gtc/matrix_transform.hpp>
 #include <GL/glm/gtc/type_ptr.hpp>
-#define GLFW_INCLUDE_GLU
 #include "Window.h"
 #include "GLUtil.h"
 #include "Vec2f.h"
@@ -17,6 +16,7 @@
 void init();
 void update(float time);
 void draw();
+void terminate();
 
 float w = 0.0f, h = 0.0f;
 
@@ -24,32 +24,12 @@ GLuint vertexArray, vertexBuffer, uvBuffer;
 Texture* texture = NULL;
 
 Vec2f camera;
-
 GLuint programID, mvpID;
-
-//changed it from a cube to a plane, since that's what we'll be using most likely
-static const GLfloat plane[] = {
-     1.0f,  1.0f, 0.0f,
-    -1.0f,  1.0f, 0.0f,
-     1.0f, -1.0f, 0.0f,
-    -1.0f, -1.0f, 0.0f,
-     1.0f, -1.0f, 0.0f,
-    -1.0f,  1.0f, 0.0f,
-};
-
-static const GLfloat uv[] = {
-    1.0f, 1.0f,
-    0.0f, 1.0f,
-    1.0f, 0.0f,
-    0.0f, 0.0f,
-    1.0f, 0.0f,
-    0.0f, 1.0f,
-};
 
 void update(float time) {
     int err = glGetError();
     if (err) {
-        std::cout << "ERROR: " << gluErrorString(err) << std::endl;
+        std::cout << "ERROR: " << err << std::endl;
     }
 
     //keep the cursor in the center of the screen
@@ -97,7 +77,7 @@ static void keyHandler(GLFWwindow* window, int key, int scancode, int action, in
 
     //close window
     if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS){
-        std::cout<<"CLOSING"<<std::endl;
+        std::cout << "CLOSING" << std::endl;
         glfwSetWindowShouldClose(window, GL_TRUE);
     }
 }
@@ -113,10 +93,8 @@ int main(int argc, char *argv[]) {
     }
 
     //Initialize world
-    std::cout << "INIT" << std::endl;
     init();
 
-    std::cout << "LOOP" << std::endl;
     //Loop updates world, draws it, and then shows it on the screen
     while (Window::isOpen()) {
         update((float)Window::getFrameTime());
@@ -125,6 +103,7 @@ int main(int argc, char *argv[]) {
     }
 
     //Close the window
+    terminate();
     Window::destroy();
     return 0;
 }
@@ -151,12 +130,29 @@ void init() {
     glGenVertexArrays(1, &vertexArray);
     glBindVertexArray(vertexArray);
 
+    const GLfloat plane[] = {
+         1.0f,  1.0f, 0.0f,
+        -1.0f,  1.0f, 0.0f,
+         1.0f, -1.0f, 0.0f,
+        -1.0f, -1.0f, 0.0f,
+         1.0f, -1.0f, 0.0f,
+        -1.0f,  1.0f, 0.0f,
+    };
+
     //generating and binding the vertex buffer
     glGenBuffers(1, &vertexBuffer);
     glBindBuffer(GL_ARRAY_BUFFER, vertexBuffer);
     glBufferData(GL_ARRAY_BUFFER, sizeof(plane), plane, GL_STATIC_DRAW);
 
-    //generating and binding the color buffer, using the vertices positions as rgb values
+    const GLfloat uv[] = {
+        1.0f, 0.0f,
+        0.0f, 0.0f,
+        1.0f, 1.0f,
+        0.0f, 1.0f,
+        1.0f, 1.0f,
+        0.0f, 0.0f,
+    };
+
     glGenBuffers(1, &uvBuffer);
     glBindBuffer(GL_ARRAY_BUFFER, uvBuffer);
     glBufferData(GL_ARRAY_BUFFER, sizeof(uv), uv, GL_STATIC_DRAW);
@@ -166,7 +162,6 @@ void init() {
 
     //loading the vertex and fragment shaders
     programID = GLUtil::loadShaderProgram("vertexShader.txt", "fragmentShader.txt");
-    std::cout << programID << std::endl;
     glUseProgram(programID);
     mvpID = glGetUniformLocation(programID, "MVP");
     GLuint texID = glGetUniformLocation(programID, "tex");
@@ -185,11 +180,15 @@ void draw(){
     glEnableVertexAttribArray(0);
     glBindBuffer(GL_ARRAY_BUFFER, vertexBuffer);
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, (void*)0);
-    //loading the colors
+    //loading the textures
     glEnableVertexAttribArray(1);
     glBindBuffer(GL_ARRAY_BUFFER, uvBuffer);
     glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 0, (void*)0);
     //6 faces, 2 triangles per face, 3 vertices per triangle
-    glDrawArrays(GL_TRIANGLES, 0, sizeof(plane));
+    glDrawArrays(GL_TRIANGLES, 0, 6);
     glDisableVertexAttribArray(0);
+}
+
+void terminate() {
+    delete texture;
 }

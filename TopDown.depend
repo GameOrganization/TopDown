@@ -69,14 +69,13 @@
 	<fstream>
 	<iostream>
 
-1407427999 source:d:\github\topdown\src\glutil.cpp
+1407454759 source:d:\github\topdown\src\glutil.cpp
 	"GLUtil.h"
 	<string>
 	<vector>
 	<fstream>
 	<iostream>
 	<cstdlib>
-	"lodepng.h"
 
 1407427994 d:\github\topdown\include\glutil.h
 	<GL/glew.h>
@@ -93,7 +92,7 @@
 1407247520 d:\github\topdown\include\gl\wglew.h
 	<windows.h>
 
-1407428219 source:d:\github\topdown\src\main.cpp
+1407454642 source:d:\github\topdown\src\main.cpp
 	<iostream>
 	<stdlib.h>
 	<GL/glm/glm.hpp>
@@ -129,7 +128,7 @@
 1407247520 d:\github\topdown\include\vec2f.h
 	<iostream>
 
-1407249125 source:d:\github\topdown\src\window.cpp
+1407454496 source:d:\github\topdown\src\window.cpp
 	"Window.h"
 	<iostream>
 

@@ -23,13 +23,6 @@ static void error(int error, const char* description) {
     std::cerr << "Error " << error << ": " << description << std::endl;
 }
 
-void checkError(const char *name) {
-    int err = glGetError();
-    if (err) {
-        std::cout << name << " - ERROR: " << gluErrorString(err) << std::endl;
-    }
-}
-
 int Window::create() {
     //Set the error callback for GLFW
     glfwSetErrorCallback(error);
@@ -63,13 +56,11 @@ int Window::create() {
 
     //Make the window the current OpenGL context
     glfwMakeContextCurrent(ptr);
-    checkError("context");
 
     //Attempt to initialize GLEW, if an error occurred, return null
     glewExperimental = true; //needed for core profile
     if (glewInit() != GLEW_OK)
         return 1;
-    checkError("glew");
 
     //Initialize the fps counter
     fps.curr = glfwGetTime();
