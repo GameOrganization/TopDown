@@ -2,7 +2,7 @@
 #include "GL/lodepng.h"
 #include "GL/Texture.h"
 
-Texture::Texture(const char* filename) {
+Texture::Texture(const char* filename) : id(0) {
     std::vector<unsigned char> data;
     unsigned error = lodepng::decode(data, width, height, filename);
     if (error) {
@@ -16,7 +16,7 @@ Texture::Texture(const char* filename) {
     }
 }
 
-Texture::Texture(const char* filename, GLenum minFilter, GLenum maxFilter) {
+Texture::Texture(const char* filename, GLenum minFilter, GLenum maxFilter) : id(0) {
     std::vector<unsigned char> data;
     unsigned error = lodepng::decode(data, width, height, filename);
     if (error) {

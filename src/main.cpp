@@ -7,9 +7,9 @@
 #include <GL/glm/gtc/matrix_transform.hpp>
 #include <GL/glm/gtc/type_ptr.hpp>
 #include "Window.h"
-#include "GLUtil.h"
 #include "Vec2f.h"
 #include "GL/Texture.h"
+#include "GL/ShaderProgram.h"
 
 #define VSYNC 1
 
@@ -22,9 +22,10 @@ float w = 0.0f, h = 0.0f;
 
 GLuint vertexArray, vertexBuffer, uvBuffer;
 Texture* texture = NULL;
+ShaderProgram* program = NULL;
 
 Vec2f camera;
-GLuint programID, mvpID;
+GLuint mvpID;
 
 void update(float time) {
     int err = glGetError();
@@ -85,7 +86,6 @@ static void keyHandler(GLFWwindow* window, int key, int scancode, int action, in
 static void mouseHandler(GLFWwindow* window, int button, int action, int mods) {}
 
 int main(int argc, char *argv[]) {
-
     //Attempt to create window
     if (Window::create()) {
         Window::destroy();
@@ -161,10 +161,10 @@ void init() {
     glClearColor(0.0f, 0.0f, 0.5f, 0.0f);
 
     //loading the vertex and fragment shaders
-    programID = GLUtil::loadShaderProgram("vertexShader.txt", "fragmentShader.txt");
-    glUseProgram(programID);
-    mvpID = glGetUniformLocation(programID, "MVP");
-    GLuint texID = glGetUniformLocation(programID, "tex");
+    program = new ShaderProgram("vert.glsl", "frag.glsl");
+    program->use();
+    mvpID = program->getUniform("MVP");
+    GLuint texID = program->getUniform("tex");
 
     texture = new Texture("test.png");
     texture->bind(1);
@@ -190,5 +190,6 @@ void draw(){
 }
 
 void terminate() {
+    delete program;
     delete texture;
 }

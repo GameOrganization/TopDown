@@ -92,7 +92,7 @@
 1407247520 d:\github\topdown\include\gl\wglew.h
 	<windows.h>
 
-1407454642 source:d:\github\topdown\src\main.cpp
+1407524154 source:d:\github\topdown\src\main.cpp
 	<iostream>
 	<stdlib.h>
 	<GL/glm/glm.hpp>
@@ -101,9 +101,9 @@
 	<GL/glm/gtc/matrix_transform.hpp>
 	<GL/glm/gtc/type_ptr.hpp>
 	"Window.h"
-	"GLUtil.h"
 	"Vec2f.h"
 	"GL/Texture.h"
+	"GL/ShaderProgram.h"
 
 1407428223 d:\github\topdown\include\window.h
 	"GL/glew.h"
@@ -1880,7 +1880,7 @@
 1407247520 d:\github\topdown\include\gl\glm\gtc\type_ptr.inl
 	<cstring>
 
-1407428371 source:d:\github\topdown\src\texture.cpp
+1407520130 source:d:\github\topdown\src\texture.cpp
 	<stdio.h>
 	"GL/lodepng.h"
 	"GL/Texture.h"
@@ -1892,4 +1892,14 @@
 	"lodepng.h"
 	<iostream>
 	"lodepng.h"
+
+1407524069 source:d:\github\topdown\src\shaderprogram.cpp
+	<fstream>
+	<stdio.h>
+	<cstdlib>
+	"GL/ShaderProgram.h"
+
+1407523990 d:\github\topdown\include\gl\shaderprogram.h
+	"GL/glew.h"
+	"GL/glfw3.h"
 

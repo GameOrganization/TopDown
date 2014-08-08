@@ -16,6 +16,7 @@
 					<Add option="-O2" />
 					<Add option="-DGLEW_STATIC" />
 					<Add directory="include" />
+					<Add directory="include/GL" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
@@ -32,17 +33,17 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
-		<Unit filename="bin/Release/fragmentShader.txt" />
-		<Unit filename="bin/Release/vertexShader.txt" />
+		<Unit filename="bin/Release/frag.glsl" />
+		<Unit filename="bin/Release/vert.glsl" />
 		<Unit filename="include/Entity.h" />
-		<Unit filename="include/GLUtil.h" />
+		<Unit filename="include/GL/ShaderProgram.h" />
 		<Unit filename="include/GL/Texture.h" />
 		<Unit filename="include/GL/lodepng.h" />
 		<Unit filename="include/Vec2f.h" />
 		<Unit filename="include/Window.h" />
 		<Unit filename="include/camera.h" />
 		<Unit filename="src/Entity.cpp" />
-		<Unit filename="src/GLUtil.cpp" />
+		<Unit filename="src/ShaderProgram.cpp" />
 		<Unit filename="src/Texture.cpp" />
 		<Unit filename="src/Vec2f.cpp" />
 		<Unit filename="src/Window.cpp" />
