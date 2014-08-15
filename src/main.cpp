@@ -28,55 +28,27 @@ Vec2f camera;
 GLuint mvpID;
 
 void update(float time) {
-    int err = glGetError();
-    if (err) {
-        std::cout << "ERROR: " << err << std::endl;
-    }
+    glfwSetCursorPos(Window::ptr, (double)w/2, (double)h/2);    //Potentiall move to mouse motion handler
 
-    //keep the cursor in the center of the screen
-    glfwSetCursorPos(Window::ptr, (double)w/2, (double)h/2);
-
-    glm::mat4 projection = glm::ortho(-2*w/h, 2*w/h, -2.0f, 2.0f, -2.0f, 2.0f);
-
-    Vec2f motion(0.0f, 0.0f);
-    if (glfwGetKey(Window::ptr, GLFW_KEY_W) == GLFW_PRESS) {
-        motion.y -= 1.0f;
-    }
-    if (glfwGetKey(Window::ptr, GLFW_KEY_A) == GLFW_PRESS) {
-        motion.x += 1.0f;
-    }
-    if (glfwGetKey(Window::ptr, GLFW_KEY_S) == GLFW_PRESS) {
-        motion.y += 1.0f;
-    }
-    if (glfwGetKey(Window::ptr, GLFW_KEY_D) == GLFW_PRESS) {
-        motion.x -= 1.0f;
-    }
+    Vec2f motion;
+    if (glfwGetKey(Window::ptr, GLFW_KEY_W) == GLFW_PRESS) motion.y -= 1.0f;
+    if (glfwGetKey(Window::ptr, GLFW_KEY_A) == GLFW_PRESS) motion.x += 1.0f;
+    if (glfwGetKey(Window::ptr, GLFW_KEY_S) == GLFW_PRESS) motion.y += 1.0f;
+    if (glfwGetKey(Window::ptr, GLFW_KEY_D) == GLFW_PRESS) motion.x -= 1.0f;
 
     if (motion.lengthSquared() > 0) {
         motion.normalize();
         camera += motion * time;
-/*        static const GLfloat player[] = {
-             0.3f + motion.x,  0.3f + motion.y, 0.1f,
-            -0.3f + motion.x,  0.3f + motion.y, 0.1f,
-             0.3f + motion.x, -0.3f + motion.y, 0.1f,
-            -0.3f + motion.x, -0.3f + motion.y, 0.1f,
-             0.3f + motion.x, -0.3f + motion.y, 0.1f,
-            -0.3f + motion.x,  0.3f + motion.y, 0.1f,
-        };  */
     }
 
+    glm::mat4 projection = glm::ortho(-2*w/h, 2*w/h, -2.0f, 2.0f, -2.0f, 2.0f);
     glm::mat4 view = glm::translate(glm::mat4(1.0f), glm::vec3(camera.x, camera.y, 0.0f));
-
     glm::mat4 model = glm::mat4(1.0f);
-
     glm::mat4 mvp = projection * view * model;
-
     glUniformMatrix4fv(mvpID, 1, GL_FALSE, glm::value_ptr(mvp));
 }
 
 static void keyHandler(GLFWwindow* window, int key, int scancode, int action, int mods) {
-
-    //close window
     if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS){
         std::cout << "CLOSING" << std::endl;
         glfwSetWindowShouldClose(window, GL_TRUE);
@@ -91,6 +63,9 @@ int main(int argc, char *argv[]) {
         Window::destroy();
         return 1;
     }
+
+    w = Window::width();
+    h = Window::height();
 
     //Initialize world
     init();
@@ -117,18 +92,15 @@ void init() {
     //just noticed this and laughed in the office i dont care i love it
     glfwSwapInterval(VSYNC);
 
-    w = Window::width();
-    h = Window::height();
-
-    glEnable(GL_CULL_FACE);
-    glEnable(GL_DEPTH_TEST);
-    glDepthFunc(GL_LESS);
-
     //hides the cursor
     glfwSetInputMode(Window::ptr, GLFW_CURSOR, GLFW_CURSOR_HIDDEN);
 
     glGenVertexArrays(1, &vertexArray);
     glBindVertexArray(vertexArray);
+
+    int maxTextures;
+    glGetIntegerv(GL_MAX_COMBINED_TEXTURE_IMAGE_UNITS, &maxTextures);
+    std::cout << "MAX TEXTURES (>80): " << maxTextures << std::endl;
 
     const GLfloat plane[] = {
          1.0f,  1.0f, 0.0f,

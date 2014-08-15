@@ -1,5 +1,5 @@
 #include "Window.h"
-#include <iostream>
+#include <stdio.h>
 
 //Initialize to NULL to signify that there is no window
 GLFWwindow* Window::ptr = NULL;
@@ -19,8 +19,15 @@ struct fc {
 } fps = {0, 0.0, 0, 0.0, 0.0};
 
 //Callback function to display error codes and descriptions from GLFW
-static void error(int error, const char* description) {
-    std::cerr << "Error " << error << ": " << description << std::endl;
+static void error(int error, const char* desc) {
+    printf("Error %d: %s\n", error, desc);
+}
+
+static void printGLInfo() {
+    printf("Vendor: %s\n", glGetString(GL_VENDOR));
+    printf("Renderer: %s\n", glGetString(GL_RENDERER));
+    printf("OpenGL Version: %s\n", glGetString(GL_VERSION));
+    printf("GLSL Version: %s\n", glGetString(GL_SHADING_LANGUAGE_VERSION));
 }
 
 int Window::create() {
@@ -40,19 +47,20 @@ int Window::create() {
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3); //OpenGL 3.3
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
     glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE); //Needed on MacOS for some reason
-    glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE); //Use core profile (idk what that means)
+    glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_COMPAT_PROFILE); //TODO: find why core profile isn't working
 
     //Attempt to create the fullscreen window with native resolution
     GLFWmonitor* monitor = glfwGetPrimaryMonitor();
     const GLFWvidmode* display = glfwGetVideoMode(monitor);
-    ptr = glfwCreateWindow(display->width, display->height, WINDOW_TITLE, monitor, NULL);
+    ptr = glfwCreateWindow(display->width/2, display->height/2, WINDOW_TITLE, NULL, NULL);
+    //TODO: decide whether to do fullscreen or ust
 
     //If window is still null, return 1
     if (!ptr)
         return 1;
     //Update the resolution struct
-    resolution.w = display->width;
-    resolution.h = display->height;
+    resolution.w = display->width/2;
+    resolution.h = display->height/2;
 
     //Make the window the current OpenGL context
     glfwMakeContextCurrent(ptr);
@@ -64,6 +72,9 @@ int Window::create() {
 
     //Initialize the fps counter
     fps.curr = glfwGetTime();
+
+    //Print debug information
+    printGLInfo();
 
     //Return 0 since no error occurred
     return 0;
@@ -104,7 +115,7 @@ void Window::update() {
         fps.fps = fps.frames;
         fps.frames = 0;
         fps.time -= 1.0;
-        std::cout << fps.fps << "fps" << std::endl;
+        printf("%dfps\n", fps.fps);
     }
 }
 
