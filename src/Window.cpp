@@ -44,6 +44,7 @@ int Window::create() {
 
     //Set up the window with compatibility for OpenGL 3.3
     glfwWindowHint(GLFW_SAMPLES, 4); //Enable 4x antialiasing because yes
+    glfwWindowHint(GLFW_DECORATED, GL_FALSE); //Borderless window
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3); //OpenGL 3.3
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
     glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE); //Needed on MacOS for some reason
@@ -52,15 +53,14 @@ int Window::create() {
     //Attempt to create the fullscreen window with native resolution
     GLFWmonitor* monitor = glfwGetPrimaryMonitor();
     const GLFWvidmode* display = glfwGetVideoMode(monitor);
-    ptr = glfwCreateWindow(display->width/2, display->height/2, WINDOW_TITLE, NULL, NULL);
-    //TODO: decide whether to do fullscreen or ust
+    ptr = glfwCreateWindow(display->width, display->height, WINDOW_TITLE, NULL, NULL);
 
     //If window is still null, return 1
     if (!ptr)
         return 1;
     //Update the resolution struct
-    resolution.w = display->width/2;
-    resolution.h = display->height/2;
+    resolution.w = display->width;
+    resolution.h = display->height;
 
     //Make the window the current OpenGL context
     glfwMakeContextCurrent(ptr);
